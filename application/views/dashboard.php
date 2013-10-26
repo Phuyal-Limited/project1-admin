@@ -60,7 +60,7 @@
 		<ul class="toggle">
 			<li class="icn_settings"><a href="#">Options</a></li>
 			<li class="icn_security"><a href="#">Security</a></li>
-			<li class="icn_jump_back"><a href="index.php">Logout</a></li>
+			<li class="icn_jump_back"><a href="<?php echo base_url();?>logout">Logout</a></li>
 		</ul>
 		
 		<footer>
@@ -75,7 +75,7 @@
 		<article class="module width_full">
 			<header><h3>Publish a Book</h3></header>
 				<div class="module_content">
-						<form action="" method="post" name="publish">
+						<form action="<?php echo base_url();?>publish" method="post" id="publish" name="publish">
                         <fieldset style="width:48%; float:left; margin-right: 3%;"> 
 							<label>ISBN 10</label>
 							<input type="text" name="isbn10" id="isbn10" style="width:92%;">
@@ -83,7 +83,7 @@
                         <fieldset style="width:48%; float:left;">
 							<label>ISBN 13</label>
 							<input type="text" name="isbn13" id="isbn13" tyle="width:92%;">
-						</fieldset>
+						</fieldset><div class="clear"></div>
                         <fieldset>
 							<label>Book Title</label>
 							<input type="text" name="book_name" id="book_name">
@@ -117,15 +117,14 @@
 						<fieldset style="width:48%; float:left; margin-right: 3%;"> 
 							<label>Category</label>
 							<select name="category_id" id="category_id" style="width:92%;">
-								<option>Computers</option>
-								<option>Business</option>
-								<option>History</option>
-								<option>Religion</option>
-								<option>History</option>
-								<option>Health & fitness</option>
-								<option>Science</option>
-								<option>Fiction</option>
-								<option>Non-fiction</option>
+								<option>Please Choose...</option>
+								<?php 
+									for($i=0;$i<sizeof($category);$i++){
+								?>
+                                <option value="<?php echo $category[$i]->category_id;?>"><?php echo $category[$i]->name;?></option>
+                                <?php		
+									}
+								?>
 							</select>
 						</fieldset>
 						<fieldset style="width:48%; float:left;"> 
@@ -140,7 +139,12 @@
 							<label>Store Item Reference(Optional)</label>
 							<input type="text" name="store_ref" id="store_ref" style="width:92%;">
 						</fieldset><div class="clear"></div>
-						<fieldset>
+						<fieldset style="width:48%; float:left;"> 
+							<label>Image</label>&nbsp;
+							<input type="file" name="image" id="image" value="test"style="width:92%;">
+                            
+						</fieldset><div class="clear"></div>
+                        <fieldset>
 							<label>Description</label>
 							<textarea name="description" id="description" rows="12"></textarea>
 						</fieldset>
@@ -149,7 +153,7 @@
 			<footer>
 				<div class="submit_link">
 					
-					<input type="submit" value="Publish" class="alt_btn">
+					<input type="submit" id="submit" value="Publish" class="alt_btn">
 					<input type="submit" value="Reset" id="reset">
 				</div>
 			</footer>

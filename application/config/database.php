@@ -48,10 +48,10 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'mysql905.ixwebhosting.com';
-$db['default']['username'] = 'C255856_manpower';
-$db['default']['password'] = 'Gruous01';
-$db['default']['database'] = 'C255856_books';
+$db['default']['hostname'] = 'localhost';
+$db['default']['username'] = 'root';
+$db['default']['password'] = 'Everest01';
+$db['default']['database'] = 'book';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
