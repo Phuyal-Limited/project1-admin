@@ -4,29 +4,43 @@ if(isset($this->session->userdata['user_id']) && isset($this->session->userdata[
 	
 	redirect('dashboard');
 }
-
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><?php echo $title;?></title>
+	<title>login</title>
+	<link href="<?php echo base_url('assets/css/login.css');?>" rel="stylesheet" media="screen">
 </head>
-
 <body>
-<h1>Genese</h1>
-<div id="main-container">
-	<div id="login">
-    	<form action="<?php echo base_url();?>login_entry" id="login_form" method="post">
-			<fieldset>
-				<legend>Login</legend>
-					Username: <input name="user" type="text" id="user"/><br/>
-					Password: <input name="pass" type="password" id="pass"/><br/>
-                    <input name="login" id="login" type="submit" value="Login">
-                    <p id="msg"></p>
-			</fieldset>
-		</form>
+	<div class="login-main">
+		<div id="logo">
+			<img src="<?php echo base_url('assets/images/logo.png')?>">
+			<!-- Nepal reads -->
+		</div>
+		<div class="login-form">
+			<form name="login" id="login_form" method="POST" action="<?php echo base_url();?>login_entry" >
+				<div id="username">
+					<label>Username: </label></br>
+					<input type="text" name="user"  id="user" class="text-box" /></br>
+				</div>
+				<div id="password">
+					<label>Password:</label> </br>
+					<input type="password" name="pass"  id="pass" class="text-box" /></br>
+				</div><br />
+				<div id="msg"></div>
+
+				<div id="button">
+					<input type="submit" value="Login" id="submit-button">
+				</div>
+				<div id="forget">
+					<p><a href="#">Forget Password?</a>
+						or
+						<a href="#">Contact Us.</a>
+					</p>
+				</div>
+			</form>
+		</div>
 	</div>
-</div>
-<script src="<?php echo base_url('assets/js/jquery.js');?>"></script>
+	<script src="<?php echo base_url('assets/js/jquery.js');?>"></script>
  <script src="<?php echo base_url('assets/js/jq.js');?>"></script>
+</body>
+</html>

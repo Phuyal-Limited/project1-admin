@@ -8,7 +8,8 @@ class Main extends CI_Controller {
 		$this->load->view('login', $data);	
 	}
 	
-	
+
+		
 	public function dashboard(){
 		if(!isset($this->session->userdata['user_id']) && !isset($this->session->userdata['access_right']) && !isset($this->session->userdata['profile_id'])){
 	
