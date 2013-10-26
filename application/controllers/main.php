@@ -10,10 +10,15 @@ class Main extends CI_Controller {
 	
 	
 	public function dashboard(){
+		if(!isset($this->session->userdata['user_id']) && !isset($this->session->userdata['access_right']) && !isset($this->session->userdata['profile_id'])){
+	
+	$this->index();
+}else{
+		
 		$data['title'] = 'Dashboard Nepal Reads';
 		$data['category'] = $this->database->category();
 		$this->load->view('dashboard', $data);
-		
+	}
 	}
 	
 	public function search_book(){
