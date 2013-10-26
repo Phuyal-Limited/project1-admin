@@ -23,7 +23,7 @@ $("#login").submit(function () {
 			success: function(response){
 				
 			if(response==='successful'){
-					window.location.replace("dashboard");
+					window.location.replace("index.php/dashboard");
 				}else{
 					$("#msg").text(response);
 				}

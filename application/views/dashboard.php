@@ -60,7 +60,7 @@
 		<ul class="toggle">
 			<li class="icn_settings"><a href="#">Options</a></li>
 			<li class="icn_security"><a href="#">Security</a></li>
-			<li class="icn_jump_back"><a href="<?php echo base_url();?>logout">Logout</a></li>
+			<li class="icn_jump_back"><a href="index.php/logout">Logout</a></li>
 		</ul>
 		
 		<footer>
