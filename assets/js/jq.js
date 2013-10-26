@@ -36,7 +36,7 @@ $("#submit-button").click(function () {
 
 $("#isbn10").keyup(function(){
 	var isbn10 = $("#isbn10").val();
-	if(isbn10.length==13){
+	//if(isbn10.length==13){
 	$.ajax({
 			url: 'search_book',
 			type: 'POST',
@@ -66,17 +66,17 @@ $("#isbn10").keyup(function(){
 			},
 			
 		});
-}else{
-	$("#publish")[0].reset();
-	$("#description").text("");
-}
+//}else{
+	//$("#publish")[0].reset();
+	//$("#description").text("");
+//}
 		return false;
 	
 });
 
 $("#isbn13").keyup(function(){
 	var isbn13 = $("#isbn13").val();
-	if(isbn13.length==17){
+	//if(isbn13.length==17){
 	$.ajax({
 			url: 'search_book',
 			type: 'POST',
@@ -106,10 +106,10 @@ $("#isbn13").keyup(function(){
 			},
 			
 		});
-}else{
-	$("#publish")[0].reset();
-	$("#description").text("");
-}
+//}else{
+//	$("#publish")[0].reset();
+//	$("#description").text("");
+//}
 		return false;
 	
 });
