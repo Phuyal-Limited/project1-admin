@@ -14,7 +14,7 @@ $("#login").submit(function () {
 		
 		$.ajax({
 			
-			url:'index.php/login_entry',
+			url:'login_entry',
 			type:'POST',
 			data: {
 				name: user,
@@ -37,7 +37,7 @@ $("#isbn10").keyup(function(){
 	var isbn10 = $("#isbn10").val();
 	
 	$.ajax({
-			url: 'index.php/search_book',
+			url: 'search_book',
 			type: 'POST',
 			dataType: 'json',
 			data: {
@@ -73,7 +73,7 @@ $("#isbn13").keyup(function(){
 	var isbn13 = $("#isbn13").val();
 	
 	$.ajax({
-			url: 'index.php/search_book',
+			url: 'search_book',
 			type: 'POST',
 			dataType: 'json',
 			data: {
@@ -113,7 +113,7 @@ $("#submit").click(function(event) {
         type: "POST",
         contentType:false,//attr( "enctype", "multipart/form-data" ),
         processData:false,
-        url: 'index.php/publish', 
+        url: $('#publish').attr('action'), 
         data: oData, 
         success: function( data ) 
         { 
