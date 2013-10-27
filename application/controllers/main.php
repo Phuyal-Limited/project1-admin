@@ -11,18 +11,20 @@ class Main extends CI_Controller {
 
 		
 	public function dashboard(){
+		//check for session
 		if(!isset($this->session->userdata['user_id']) && !isset($this->session->userdata['access_right']) && !isset($this->session->userdata['profile_id'])){
 	
-	$this->index();
-}else{
+			$this->index();
+		}else{
 		
-		$data['title'] = 'Dashboard Nepal Reads';
-		$data['category'] = $this->database->category();
-		$this->load->view('dashboard', $data);
-	}
+			$data['title'] = 'Dashboard Nepal Reads';
+			$data['category'] = $this->database->category();
+			$this->load->view('dashboard', $data);
+		}
 	}
 	
 	public function search_book(){
+		//check if isnb posted by ajax or not
 		if(!isset($_POST['isbn'])){
 			$this->dashboard();
 		}else{
@@ -31,7 +33,8 @@ class Main extends CI_Controller {
 			$output = $this->database->search_book($isbn);
 			
 			if($output == array()){
-				echo '';
+				$error = array('error'=> '1');
+				print_r(json_encode($error));
 			}else{
 				$output1 = get_object_vars($output[0]);
 				$image_id = $output1['image_id'];
@@ -46,7 +49,7 @@ class Main extends CI_Controller {
 	
 	public function login_entry()
 	{
-		
+		//check if submit button clicked or not
 		if (!isset($_POST['name'])){
 			$this->index();
 		}else{
@@ -84,11 +87,159 @@ class Main extends CI_Controller {
 	}
 	
 	public function publish(){
-		
-		if (!isset($_POST['name'])){
+		//check if data from ajax submitted or not
+		if (!isset($_POST['book_name'])){
 			$this->index();
 		}else{
-			echo 'Successful!!';exit();
+			
+			$book_id = $this->input->post('book_id');
+			$store_id = $this->session->userdata['profile_id'];
+			
+			//check if the book details entered exists or not with book_id
+			$book_check = $this->database->book_check($book_id);
+			$store_stock = $this->database->store_check($book_id, $store_id);
+			
+			//no record in stock for that store
+			if($store_stock == array()){
+			
+				//book doesnot exist
+				if($book_check == array()){
+					//image upload
+					//get last image_id
+					$imgcheck = $_FILES['image']['error'];
+					
+					//image not inserted so set default image_id
+					if($imgcheck != 0){
+						$img_id = 2;
+						
+						$image_details = array();
+					}else{
+						//image inserted
+						$image_id = $this->database->image_id();
+						
+						if($image_id == array()){
+							$img_id = 1;
+						}else{
+							$img_id = $image_id[0]->image_id;
+							
+							$img_id = $img_id + 1;
+							
+						}
+						$imgname = $_FILES['image']['name'];
+						$ext = explode('.', $imgname);
+						
+						$ext_name = $ext[1];
+						
+						$dir = './assets/images/book_image/';
+						
+						$tempname = $_FILES['image']['tmp_name'];
+						$size = $_FILES['image']['size'];
+						$type = $_FILES['image']['type'];
+						
+						//check image
+						if($ext_name == 'jpg' OR $ext_name == 'jpeg' OR $ext_name == 'png'){
+							//test
+						}else{
+							echo 'Invalid File Type';exit();
+						}
+						if($size > 2097152){
+							echo 'File Size Larger';exit();
+						}
+						
+						move_uploaded_file($tempname, $dir.$img_id.'.'.$ext_name);
+						
+						$image_details = array(
+							'image_id' => '',
+							'name' => $this->input->post('book_name'),
+							'path' => $img_id.'.'.$ext_name, 
+							'alt' => $this->input->post('book_name'),
+							'system_image' => 0,
+							'shared' => 0
+						);
+						
+					}
+					
+					//check for delivery cost
+					$delivery_in_city = $this->input->post('delivery_cost_within_city');
+					$delivery_outof_city = $this->input->post('delivery_cost_outof_city');
+					$delivery_cost = $this->database->bookshop($store_id);
+					
+					if($delivery_in_city == ''){
+						$delivery_in_city = $delivery_cost[0]->delivery_cost_within_city;
+						
+					}
+					if($delivery_outof_city == ''){
+						$delivery_outof_city = $delivery_cost[0]->delivery_cost_outof_city;
+						
+					}
+					
+					$bok_id = $this->database->book_id();
+					
+					if($bok_id == array()){
+						$id = 1;
+					}else{
+						$id = $bok_id[0]->book_id;
+						
+						$id = $id + 1;
+						
+					}
+					$wt = $this->input->post('weight');
+					if($wt==''){
+						$wt = 0;
+					}
+					
+					$book_details = array(
+						'book_id' => '',
+						'book_name' => $this->input->post('book_name'),
+						'isbn10' => $this->input->post('isbn10'),
+						'isbn13' => $this->input->post('isbn13'),
+						'author' => $this->input->post('author'),
+						'description' => $this->input->post('description'),
+						'category_id' => $this->input->post('category_id'),
+						'publisher' => $this->input->post('publisher'),
+						'image_id' => $img_id,
+						'language' => $this->input->post('language'),
+						'weight' => $wt,
+						'published_date' => $this->input->post('published_date'),		
+					);
+					$store_ref = $this->input->post('store_ref');
+					if($store_ref == ''){
+						$store_ref = 'N/A';
+					}
+					$stock_details = array(
+						'stock_id' => '',
+						'store' => $store_id,
+						'book_id' => $id,
+						'price' => $this->input->post('price'),
+						'item_no_for_store_ref' => $this->input->post('store_ref'),
+						'delivery_cost_within_city' => $delivery_in_city,
+						'delivery_cost_outof_city' => $delivery_outof_city,
+						'stock' => $this->input->post('qty')
+					);
+					
+					
+					$this->database->publish_book($book_details, $stock_details, $image_details);
+					
+					echo 'Book Successfully Added.';exit();
+	
+				}else{                                   //book_id exists so add only prices and quantity in shop_stock
+					$stock_details = array(
+						'store' => $store_id,
+						'book_id' => $this->input->post('book_id'),
+						'price' => $this->input->post('price'),
+						'item_no_for_store_ref' => $this->input->post('store_ref'),
+						'delivery_cost_within_city' => $delivery_in_city,
+						'delivery_cost_outof_city' => $delivery_outof_city,
+						'stock' => $this->input->post('qty')
+					);
+					
+					$this->database->input_shopstock($stock_details);
+					echo 'Book Successfully Added.';exit();
+				}
+			}else{                                       //stock record exists			
+				echo "Book already exists in your store";exit();
+			}
+				
 		}
 	}
 	
