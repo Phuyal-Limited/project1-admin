@@ -133,8 +133,7 @@
 							<label>Delivery Cost Within City</label>
 							<input type="text" name="delivery_cost_within_city" id="delivery_cost_within_city" style="width:92%;">
 						</fieldset><div class="clear"></div>
-                        <div id="popup" style="background-color:green; display:none; width:48%; margin-left:25%; height:90px; color:white; z-index:100; text-align:center; vertical-align:middle; font-size:36px;"></div>
-                        <div class="clear"></div>
+                        
                         <fieldset style="width:48%; float:left;"> 
 							<label>Delivery Cost Out Of City</label>
 							<input type="text" name="delivery_cost_outof_city" id="delivery_cost_outof_city" style="width:92%;">
@@ -143,6 +142,8 @@
 							<label>Store Item Reference</label>
 							<input type="text" name="store_ref" id="store_ref" style="width:92%;">
 						</fieldset><div class="clear"></div>
+                        <div id="popup" style="background-color:green; display:none; width:48%; margin-left:25%; height:90px; color:white; z-index:100; text-align:center; vertical-align:middle; font-size:36px;"></div>
+                        <div class="clear"></div>
 						<fieldset style="width:48%; float:left;"> 
 							<label>Image</label>&nbsp;
 							<input type="file" name="image" id="image" onChange="readURL(this);" style="width:92%;">
