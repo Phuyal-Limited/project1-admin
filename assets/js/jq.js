@@ -167,7 +167,7 @@ $("#submit").click(function(event) {
 				$("#popup").html('Book Successfully Added.');
 				$("#publish")[0].reset();
 				$("#description").text("");
-				$('#img_prev').attr('src', "#")
+				$('#img_prev').hide();
 			}
 			if(data =='Book already exists in your store'){
 				$("#popup").fadeIn(500);
