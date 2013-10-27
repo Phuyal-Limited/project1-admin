@@ -199,6 +199,7 @@ return false;
 $("#reset").click(function(){
 	$("#publish")[0].reset();
 	$("#description").text("");
+	$('#img_prev').hide();
 });
 
 
