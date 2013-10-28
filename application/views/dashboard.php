@@ -1,73 +1,8 @@
-<!doctype html>
-<html lang="en">
+<?php  
+	include("header.php");
+	include("sidebar.php");
+?>
 
-<head>
-	<meta charset="utf-8"/>
-	<title><?php echo $title;?></title>
-	
-	<link rel="stylesheet" href="<?php echo base_url('assets/css/layout.css');?>" type="text/css" media="screen" />
-	<script src="<?php echo base_url('assets/js/jquery.js');?>" type="text/javascript"></script>
-	<script src="<?php echo base_url('assets/js/hideshow.js');?>" type="text/javascript"></script>
-
-</head>
-
-
-<body>
-
-	<header id="header">
-		<hgroup>
-			<h1 class="site_title" id="dashboard-title"><a href="">Dashboard</a></h1>
-			<h2 class="section_title"id="logo-back"><a href="index.php">Nepal <span>Reads</a></span></h2><div class="btn_view_site"><a href="index.php">View Site</a></div>
-		</hgroup>
-	</header> <!-- end of header bar -->
-	
-	<section id="secondary_bar">
-		<div class="user">
-			<p>Bibek KC (<a href="#">3 Messages</a>)</p>
-			<a class="logout_user" href="#" title="Logout">Logout</a>
-		</div>
-		<div class="breadcrumbs_container">
-			<article class="breadcrumbs"><a href="index.php">Nepal Reads</a> <div class="breadcrumb_divider"></div> <a class="current">Dashboard</a></article>
-		</div>
-	</section><!-- end of secondary bar -->
-
-	<aside id="sidebar" class="column">
-		<form class="quick_search" name="search">
-			<input type="text"  placeholder="Quick Search">
-		</form>
-		<hr/>
-		<h3>lorem</h3>
-		<ul class="toggle">
-			<li class="icn_new_article"><a href="#">Lorem Ipsum</a></li>
-			<li class="icn_edit_article"><a href="#">Lorem Ipsum</a></li>
-			<li class="icn_categories"><a href="#">Lorem Ipsum</a></li>
-			<li class="icn_tags"><a href="#">Lorem Ipsum</a></li>
-		</ul>
-		<h3>lorem</h3>
-		<ul class="toggle">
-			<li class="icn_add_user"><a href="#">Lorem Ipsum</a></li>
-			<li class="icn_view_users"><a href="#">Lorem Ipsum</a></li>
-			<li class="icn_profile"><a href="#">Lorem Ipsum</a></li>
-		</ul>
-		<h3>lorem</h3>
-		<ul class="toggle">
-			<li class="icn_folder"><a href="#">Lorem Ipsum</a></li>
-			<li class="icn_photo"><a href="#">Lorem Ipsum</a></li>
-			<li class="icn_audio"><a href="#">Lorem Ipsum</a></li>
-			<li class="icn_video"><a href="#">Lorem Ipsum</a></li>
-		</ul>
-		<h3>Admin</h3>
-		<ul class="toggle">
-			<li class="icn_settings"><a href="#">Options</a></li>
-			<li class="icn_security"><a href="#">Security</a></li>
-			<li class="icn_jump_back"><a href="logout">Logout</a></li>
-		</ul>
-		
-		<footer>
-			<hr />
-			<p><strong>Copyright &copy; 2013 Nepal Reads</strong></p>
-		</footer>
-	</aside><!-- end of sidebar -->
 	
 	<section id="main" class="column">
 		
@@ -78,11 +13,11 @@
 						<form action="<?php echo base_url();?>publish" method="post" id="publish" name="publish">
                         <fieldset style="width:48%; float:left; margin-right: 3%;"> 
 							<label>ISBN 10 *</label>
-							<input type="text" name="isbn10" id="isbn10" style="width:92%;">
+							<input type="text" name="isbn10" id="isbn10" placeholder="" style="width:92%;">
 						</fieldset>
                         <fieldset style="width:48%; float:left;">
 							<label>ISBN 13 *</label>
-							<input type="text" name="isbn13" id="isbn13" tyle="width:92%;">
+							<input type="text" name="isbn13" id="isbn13" placeholder="" style="width:92%;">
 						</fieldset><div class="clear"></div>
                         <fieldset>
 							<label>Book Title *</label>
@@ -159,6 +94,7 @@
 							<textarea name="description" id="description" rows="12"></textarea>
 						</fieldset>
 						<input type="hidden" name="book_id" id="book_id" >
+                        <input type="hidden" name="isbn_check" id="isbn_check" value="0" >
                        </form>
 				</div>
 			<footer>
@@ -172,8 +108,6 @@
 		
 		<div class="spacer"></div>
 	</section>
-
-<script src="<?php echo base_url('assets/js/jq.js');?>" type="text/javascript"></script>
-</body>
-
-</html>
+<?php  
+	include("footer.php");
+?>

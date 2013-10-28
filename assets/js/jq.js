@@ -37,6 +37,8 @@ $("#submit-button").click(function () {
 $("#isbn10").keyup(function(){
 	var isbn10 = $("#isbn10").val();
 	var isbn13 = $("#isbn13").val();
+	var isbn_check = $("#isbn_check").val();
+	alert(isbn_check);
 	if(isbn10.length==10){
 	$.ajax({
 			url: 'search_book',
@@ -49,12 +51,19 @@ $("#isbn10").keyup(function(){
 			success: function(response){
 				
 				if(response.error === '1'){
-					$("#book_id").val('');
-					$("#publish")[0].reset();
-					$("#description").text("");
-					$("#isbn13").val(isbn13);
-					$("#isbn10").val(isbn10);
+					if(isbn_check == "0"){
+						//do nothing
+					}else{
+						$("#book_id").val('');
+						$("#publish")[0].reset();
+						$("#description").text("");
+						
+						$("#isbn10").val(isbn10);
+						$("#isbn_check").val('0');
+						$("#publish :input").attr('disabled', false);
+					}
 				}else{
+					
 					$("#isbn13").val(response[0].isbn13);
 					$("#book_name").val(response[0].book_name);
 					$("#author").val(response[0].author);
@@ -66,14 +75,24 @@ $("#isbn10").keyup(function(){
 					$("#category_id").val(response[0].category_id);
 					
 					$("#description").text(response[0].description);
-					$("#image").text(response[1].path);
+					$("#image").html(response[1].path);
 					$("#book_id").val(response[0].book_id);
+					$("#isbn_check").val('1');
+					
+					
+					$("#publish :input").attr('disabled', true);
+					$("#isbn10").attr('disabled', false);
+					$("#price").attr('disabled', false);
+					$("#qty").attr('disabled', false);
+					$("#store_ref").attr('disabled', false);
+					$("#delivery_cost_outof_city").attr('disabled', false);
+					$("#delivery_cost_within_city").attr('disabled', false);
+					$("#book_id").attr('disabled', false);
 				}
 			},
 			
 		});
-}
-//else{
+}//else{
 	//$("#publish")[0].reset();
 	//$("#description").text("");
 	//$("#isbn10").val(isbn10);
@@ -85,6 +104,7 @@ $("#isbn10").keyup(function(){
 $("#isbn13").keyup(function(){
 	var isbn13 = $("#isbn13").val();
 	var isbn10 = $("#isbn10").val();
+	var isbn_check = $("#isbn_check").val();
 	if(isbn13.length==13){
 	$.ajax({
 			url: 'search_book',
@@ -97,11 +117,17 @@ $("#isbn13").keyup(function(){
 			success: function(response){
 				
 				if(response.error === '1'){
-					$("#book_id").val('');
-					$("#publish")[0].reset();
-					$("#description").text("");
-					$("#isbn13").val(isbn13);
-					$("#isbn10").val(isbn10);
+					if(isbn_check == "0"){
+					
+					}else{
+						$("#book_id").val('');
+						$("#publish")[0].reset();
+						$("#description").text("");
+						$("#isbn13").val(isbn13);
+					
+						$("#isbn_check").val('0');
+						$("#publish :input").attr('disabled', false);
+					}
 				}else{
 					$("#isbn10").val(response[0].isbn10);
 					$("#book_name").val(response[0].book_name);
@@ -116,12 +142,19 @@ $("#isbn13").keyup(function(){
 					$("#description").text(response[0].description);
 					$("#image").text(response[1].path);
 					$("#book_id").val(response[0].book_id);
+					$("#publish :input").attr('disabled', true);
+					$("#price").attr('disabled', false);
+					$("#isbn13").attr('disabled', false);
+					$("#qty").attr('disabled', false);
+					$("#store_ref").attr('disabled', false);
+					$("#delivery_cost_outof_city").attr('disabled', false);
+					$("#delivery_cost_within_city").attr('disabled', false);
+					$("#book_id").attr('disabled', false);
 				}
 			},
 			
 		});
-}
-//else{
+}//else{
 	//$("#publish")[0].reset();
 	//$("#description").text("");
 	//$("#isbn13").val(isbn13);
@@ -169,6 +202,7 @@ $("#submit").click(function(event) {
 				$("#popup").html('Book Successfully Added.');
 				$("#publish")[0].reset();
 				$("#description").text("");
+				$('#img_prev').attr('src', "#")
 				$('#img_prev').hide();
 			}
 			if(data =='Book already exists in your store'){
@@ -181,7 +215,7 @@ $("#submit").click(function(event) {
 			}
 			if(data == 'Invalid File Type'){
 				$("#popup").fadeIn(500);
-				$("#popup").html('Invalid File Type.');
+				$("#popup").html('Invalid File Type (Image).');
 			}
 		
 		/*	else
@@ -199,6 +233,9 @@ return false;
 $("#reset").click(function(){
 	$("#publish")[0].reset();
 	$("#description").text("");
+	$("#book_id").val('');
+	$("#isn_check").val('0');
+	$('#img_prev').attr('src', "#");
 	$('#img_prev').hide();
 });
 

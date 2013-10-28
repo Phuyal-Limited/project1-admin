@@ -243,4 +243,9 @@ class Main extends CI_Controller {
 		}
 	}
 	
+	public function all_books(){
+		$data['title'] = 'My Books';
+		$this->load->view('all-books', $data);
+	}
+	
 }
