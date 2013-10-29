@@ -13,11 +13,11 @@
 						<form action="<?php echo base_url();?>publish" method="post" id="publish" name="publish">
                         <fieldset style="width:48%; float:left; margin-right: 3%;"> 
 							<label>ISBN 10 *</label>
-							<input type="text" name="isbn10" id="isbn10" placeholder="" style="width:92%;">
+							<input type="text" name="isbn10" id="isbn10" placeholder="0765426413" style="width:92%;">
 						</fieldset>
                         <fieldset style="width:48%; float:left;">
 							<label>ISBN 13 *</label>
-							<input type="text" name="isbn13" id="isbn13" placeholder="" style="width:92%;">
+							<input type="text" name="isbn13" id="isbn13" placeholder="1909521055567" style="width:92%;">
 						</fieldset><div class="clear"></div>
                         <fieldset>
 							<label>Book Title *</label>
