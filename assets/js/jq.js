@@ -38,7 +38,7 @@ $("#isbn10").keyup(function(){
 	var isbn10 = $("#isbn10").val();
 	var isbn13 = $("#isbn13").val();
 	var isbn_check = $("#isbn_check").val();
-	alert(isbn_check);
+
 	if(isbn10.length==10){
 	$.ajax({
 			url: 'search_book',
