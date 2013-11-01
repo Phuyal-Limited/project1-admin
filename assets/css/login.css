@@ -1,11 +1,11 @@
 html,body{
-	background-image:url(../images/login-bg.jpg);
+	/*background-image:url(../images/login-bg.jpg);*/
 	background-repeat:no-repeat;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
-	/*background-color:#000;*/
+	background-color:#252525;
 	height:100%;
 }
 label{
