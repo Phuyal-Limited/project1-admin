@@ -4,12 +4,18 @@ class Main extends CI_Controller {
 
 	public function index()
 	{
-		$data['title'] = 'Login | VBS';
+		$data['title'] = 'Login | Nepal Reads';
 		$this->load->view('login', $data);	
 	}
 	
 
-		
+	public function add_book()
+	{
+		$data['title'] = 'Add Book | Nepal Reads';
+		$data['category'] = $this->database->category();
+		$this->load->view('add-book', $data);	
+	}
+
 	public function dashboard(){
 		//check for session
 		if(!isset($this->session->userdata['user_id']) && !isset($this->session->userdata['access_right']) && !isset($this->session->userdata['profile_id'])){
@@ -17,8 +23,8 @@ class Main extends CI_Controller {
 			$this->index();
 		}else{
 		
-			$data['title'] = 'Dashboard Nepal Reads';
-			$data['category'] = $this->database->category();
+			$data['title'] = 'Dashboard | Nepal Reads';
+			
 			$this->load->view('dashboard', $data);
 		}
 	}
@@ -88,6 +94,7 @@ class Main extends CI_Controller {
 	
 	public function publish(){
 		//check if data from ajax submitted or not
+		
 		if (!isset($_POST['book_name'])){
 			$this->index();
 		}else{
@@ -139,6 +146,7 @@ class Main extends CI_Controller {
 						//check image
 						if($ext_name == 'jpg' OR $ext_name == 'jpeg' OR $ext_name == 'png'){
 							//test
+
 						}else{
 							echo 'Invalid File Type';exit();
 						}
@@ -149,9 +157,9 @@ class Main extends CI_Controller {
 						move_uploaded_file($tempname, $dir.$img_id.'.'.$ext_name);
 						
 						$image_details = array(
-							'image_id' => '',
+							'image_id' => $img_id,
 							'name' => $this->input->post('book_name'),
-							'path' => $img_id.'.'.$ext_name, 
+							'path' => 'http://localhost/admin.nepalreads.com/assets/images/book_image/'.$img_id.'.'.$ext_name, 
 							'alt' => $this->input->post('book_name'),
 							'system_image' => 0,
 							'shared' => 0
@@ -189,7 +197,7 @@ class Main extends CI_Controller {
 					}
 					
 					$book_details = array(
-						'book_id' => '',
+						//'book_id' => '',
 						'book_name' => $this->input->post('book_name'),
 						'isbn10' => $this->input->post('isbn10'),
 						'isbn13' => $this->input->post('isbn13'),
@@ -207,7 +215,7 @@ class Main extends CI_Controller {
 						$store_ref = 'N/A';
 					}
 					$stock_details = array(
-						'stock_id' => '',
+						//'stock_id' => '',
 						'store' => $store_id,
 						'book_id' => $id,
 						'price' => $this->input->post('price'),
@@ -223,6 +231,20 @@ class Main extends CI_Controller {
 					echo 'Book Successfully Added.';exit();
 	
 				}else{                                   //book_id exists so add only prices and quantity in shop_stock
+					
+					//check for delivery cost
+					$delivery_in_city = $this->input->post('delivery_cost_within_city');
+					$delivery_outof_city = $this->input->post('delivery_cost_outof_city');
+					$delivery_cost = $this->database->bookshop($store_id);
+					
+					if($delivery_in_city == ''){
+						$delivery_in_city = $delivery_cost[0]->delivery_cost_within_city;
+						
+					}
+					if($delivery_outof_city == ''){
+						$delivery_outof_city = $delivery_cost[0]->delivery_cost_outof_city;
+						
+					}
 					$stock_details = array(
 						'store' => $store_id,
 						'book_id' => $this->input->post('book_id'),
@@ -243,9 +265,49 @@ class Main extends CI_Controller {
 		}
 	}
 	
+	public function book_page(){
+		$store_id = $this->session->userdata['profile_id'];
+		$store_books = $this->database->store_books($store_id);
+		print_r(json_encode($store_books));exit();
+	}
+	
 	public function all_books(){
-		$data['title'] = 'My Books';
+		
+		//print_r($_POST['book']);exit();
+		$data['title'] = 'My Books | Nepal Reads';
+		
+		
 		$this->load->view('all-books', $data);
+		$this->load->view('footer-dash');
+	}
+
+	public function update_book(){
+		$data['title'] = 'Update | Nepal Reads';
+		$this->load->view('update-book', $data);
+	}
+	
+	public function get_details(){
+		if(!isset($_POST['book_id'])){
+			$this->index();
+		}else{
+			$book_id = $_POST['book_id'];
+			$stock_id = $_POST['stock_id'];
+			$store_id = $_POST['store_id'];
+			$details = $this->database->get_details($book_id, $stock_id, $store_id);
+			print_r(json_encode($details));exit();
+		}
+	}
+	
+	public function delete_item(){
+		if(!isset($_POST['book_id'])){
+			$this->index();
+		}else{
+			$book_id = $_POST['book_id'];
+			$stock_id = $_POST['stock_id'];
+			$store_id = $_POST['store_id'];
+			$this->database->delete_item($book_id, $stock_id, $store_id);
+			echo 'Item Deleted Successfully';exit();
+		}
 	}
 	
 }

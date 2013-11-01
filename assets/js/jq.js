@@ -1,5 +1,6 @@
 $(document).ready(function(){
-//admin login	 
+//admin login
+	
 $("#submit-button").click(function () {
  		var user = $("#user").val();
 		var pass = $("#pass").val();
@@ -38,7 +39,17 @@ $("#isbn10").keyup(function(){
 	var isbn10 = $("#isbn10").val();
 	var isbn13 = $("#isbn13").val();
 	var isbn_check = $("#isbn_check").val();
-
+	if(isbn_check == "0"){
+						//do nothing
+	}else{
+			$("#book_id").val('');
+			$("#publish")[0].reset();
+			$("#description").text("");
+				
+			$("#isbn10").val(isbn10);
+			$("#isbn_check").val('0');
+			$("#publish :input").attr('disabled', false);
+	}
 	if(isbn10.length==10){
 	$.ajax({
 			url: 'search_book',
@@ -81,6 +92,7 @@ $("#isbn10").keyup(function(){
 					
 					
 					$("#publish :input").attr('disabled', true);
+					
 					$("#isbn10").attr('disabled', false);
 					$("#price").attr('disabled', false);
 					$("#qty").attr('disabled', false);
@@ -105,6 +117,17 @@ $("#isbn13").keyup(function(){
 	var isbn13 = $("#isbn13").val();
 	var isbn10 = $("#isbn10").val();
 	var isbn_check = $("#isbn_check").val();
+	if(isbn_check == "0"){
+		//do nothing				
+	}else{
+			$("#book_id").val('');
+			$("#publish")[0].reset();
+			$("#description").text("");
+			$("#isbn13").val(isbn13);
+				
+			$("#isbn_check").val('0');
+			$("#publish :input").attr('disabled', false);
+	}
 	if(isbn13.length==13){
 	$.ajax({
 			url: 'search_book',
@@ -139,10 +162,14 @@ $("#isbn13").keyup(function(){
 					$("#weight").val(response[0].weight);
 					$("#category_id").val(response[0].category_id);
 					
+					$("#isbn_check").val('1');
+					
 					$("#description").text(response[0].description);
 					$("#image").text(response[1].path);
 					$("#book_id").val(response[0].book_id);
+					
 					$("#publish :input").attr('disabled', true);
+					
 					$("#price").attr('disabled', false);
 					$("#isbn13").attr('disabled', false);
 					$("#qty").attr('disabled', false);
@@ -169,6 +196,8 @@ $("#isbn13").keyup(function(){
 $("#submit").click(function(event) {
 	var isbn10 = $("#isbn10").val();
 	var isbn13 = $("#isbn13").val();
+	$("#publish :input").attr('disabled', false);
+	$("#description").text("");
 	var category_id = $("#category_id").val();
 	
 	if(isbn10.length != 10){
@@ -186,10 +215,11 @@ $("#submit").click(function(event) {
 		$("#popup").html('Category Not Selected.');
 		return false;
 	}
+	
 	var oData = new FormData(document.forms.namedItem("publish"));
 	
     $.ajax({ 
-        type: "POST",
+		type: "POST",
         contentType:false,//attr( "enctype", "multipart/form-data" ),
         processData:false,
         url: 'publish', 
@@ -231,13 +261,44 @@ return false;
 
 //reset the dashboard
 $("#reset").click(function(){
+	
 	$("#publish")[0].reset();
 	$("#description").text("");
 	$("#book_id").val('');
 	$("#isn_check").val('0');
 	$('#img_prev').attr('src', "#");
 	$('#img_prev').hide();
+	$('#popup').hide();
 });
+
+
+
+$("#del_item").click(function(){
+	var book_id = $("#del_book_id").val();
+	var stock_id = $("#del_stock_id").val();
+	var store_id = $("#del_store_id").val();
+	$.ajax({ 
+        type: "POST",
+        url: 'delete_item', 
+        data: {
+			book_id: book_id,
+			stock_id: stock_id,
+			store_id: store_id
+		}, 
+        success: function( data ) 
+        { 
+        	$('#success_title').text('');
+			$('#success_msg').html('<h4>Item Deleted Successfully.</h4>');
+			
+			$("#cancel_delete").click();
+			$("#success_display").click();
+			
+		}
+   }); 
+return false; 
+});
+
+
 
 
 });
@@ -259,4 +320,81 @@ $('#img_prev')
 
 reader.readAsDataURL(input.files[0]);
 }
+}
+
+
+function get_details(i){
+	var book_id = $("#book_id"+i).val();
+	var stock_id = $("#stock_id"+i).val();
+	var store_id = $("#store_id"+i).val();
+	
+	$.ajax({ 
+        type: "POST",
+        url: 'get_details', 
+		dataType: 'json',
+        data: {
+			book_id: book_id,
+			stock_id: stock_id,
+			store_id: store_id
+		}, 
+        success: function( data ) 
+        { 
+        	
+			$('#det_title').text(data[0].book_name);
+			$('#all_details').html('<div><img src="'+data[2].path+'" height="150px" width="150px" /><br/>' +
+			'<h4>Description</h4><hr/>' +
+			'<p>'+data[0].description+'</p>' +
+			'<h4>Details</h4><hr/>' +
+			'<p>ISBN10: '+data[0].isbn10+'</p>' +
+			'<p>ISBN13: '+data[0].isbn13+'</p>' +
+			'<p>Author: '+data[0].author+'</p>' +
+			'<p>Price: '+data[1].price+'</p>' +
+			'<p>Category: '+data[3]+'</p>' +
+			'<p>Publisher: '+data[0].publisher+'</p>' +
+			'<p>Language: '+data[0].language+'</p>' +
+			'<p>In Stock: '+data[1].stock+'</p>' +
+			'<p>Delivery Cost Within City: '+data[1].delivery_cost_within_city+'</p>' +
+			'<p>Delivery Cost Outof City: '+data[1].delivery_cost_outof_city+'</p>' +
+			'<p>Published Date: '+data[0].published_date+'</p>' +
+			'<div>'
+			);
+			$("#det").click();
+		}
+   }); 
+return false; 
+}
+
+function del_stock(i){
+	var book_id = $("#book_id"+i).val();
+	var stock_id = $("#stock_id"+i).val();
+	var store_id = $("#store_id"+i).val();
+	$("#del_book_id").val(book_id);
+	$("#del_stock_id").val(stock_id);
+	$("#del_store_id").val(store_id);
+	$.ajax({ 
+        type: "POST",
+        url: 'get_details', 
+        dataType: 'json',
+		data: {
+			book_id: book_id,
+			stock_id: stock_id,
+			store_id: store_id
+		}, 
+        success: function( data ) 
+        { 
+        	$('#del_title').text(data[0].book_name);
+			$("#del").click();
+		}
+	});
+}
+
+function update_stock(i){
+	$("#updt").click();
+}
+
+//when ok clicked after item delete
+function success_final(){
+window.location.replace("all_books");
+
+
 }
