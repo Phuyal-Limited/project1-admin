@@ -7,7 +7,7 @@ if(isset($this->session->userdata['user_id']) && isset($this->session->userdata[
 ?>
 <html>
 <head>
-	<title>login</title>
+	<title><?php echo $title;?></title>
 	<link href="<?php echo base_url('assets/css/login.css');?>" rel="stylesheet" media="screen">
 </head>
 <body>
