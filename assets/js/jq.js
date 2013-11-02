@@ -300,6 +300,43 @@ return false;
 
 
 
+$("#update_details").click(function(){
+	var book_id = $("#updt_book_id").val();
+	var stock_id = $("#updt_stock_id").val();
+	var store_id = $("#updt_store_id").val();
+	var price = $('#price').val();
+	var delivery_cost_within_city = $('#delivery_cost_within_city').val();
+	var delivery_cost_outof_city = $('#delivery_cost_outof_city').val();
+	var store_ref = $('#store_ref').val();
+	var qty = $('#qty').val();
+	
+	$.ajax({ 
+        type: "POST",
+        url: 'update_item', 
+        data: {
+			book_id: book_id,
+			stock_id: stock_id,
+			store_id: store_id,
+			price: price,
+			delivery_cost_within_city: delivery_cost_within_city,
+			delivery_cost_outof_city: delivery_cost_outof_city,
+			store_ref: store_ref,
+			qty: qty
+		}, 
+        success: function( data ) 
+        { 
+        	
+			$('#success_title').text('');
+			$('#success_msg').html('<h4>Item Updated Successfully.</h4>');
+			
+			$("#cancel_update").click();
+			$("#success_display").click();
+			
+		}
+   }); 
+return false; 
+});
+
 
 });
 
@@ -389,7 +426,35 @@ function del_stock(i){
 }
 
 function update_stock(i){
-	$("#updt").click();
+	var book_id = $("#book_id"+i).val();
+	var stock_id = $("#stock_id"+i).val();
+	var store_id = $("#store_id"+i).val();
+	$("#updt_book_id").val(book_id);
+	$("#updt_stock_id").val(stock_id);
+	$("#updt_store_id").val(store_id);
+	$.ajax({ 
+        type: "POST",
+        url: 'get_details', 
+        dataType: 'json',
+		data: {
+			book_id: book_id,
+			stock_id: stock_id,
+			store_id: store_id
+		}, 
+        success: function( data ) 
+        { 
+        	
+			
+			$('#update_form legend').text(data[0].book_name);
+			$('#price').val(data[1].price);
+			$('#delivery_cost_within_city').val(data[1].delivery_cost_within_city);
+			$('#delivery_cost_outof_city').val(data[1].delivery_cost_outof_city);
+			$('#store_ref').val(data[1].item_no_for_store_ref);
+			$('#qty').val(data[1].stock);
+			$("#updt").click();
+		}
+	});
+	return false;
 }
 
 //when ok clicked after item delete
