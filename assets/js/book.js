@@ -26,11 +26,11 @@ function book_table(){
 				var y=0;
 				var i=0;
 				for(x=0; x<=divsz; x++){
-					$("#display_list").append('<div class="row-fluid"><ul class="thumbnails">');
+					$("#test").append('<div class="row-fluid"><ul class="thumbnails">');
 					while(y<sz){
 						i++;
 						counter++;
-					$("#display_list").append('<li class="span3">'+
+					$("#test").append('<li class="span3">'+
                       '<div class="thumbnail">'+
                         '<img src="'+response[2][y].path+'" alt="'+response[2][y].alt+'" style="height:150px; width:150px;">'+
                         '<div class="caption">'+
@@ -46,8 +46,8 @@ function book_table(){
 						  '<input type="hidden" id="book_id'+i+'" value="'+response[1][y].book_id+'">'+
 						  '<input type="hidden" id="stock_id'+i+'" value="'+response[0][y].stock_id+'">'+
 						  '<input type="hidden" id="store_id'+i+'" value="'+response[0][y].store+'">'+
-						  '<a href="#" class="thumb-btn" id="get_details" onClick="get_details('+i+');">Details</a>&nbsp;'+
-						  '<a href="#" class="thumb-btn" id="del_stock" onClick="del_stock('+i+');">Delete</a>&nbsp;'+
+						  '<a href="#" class="thumb-btn" id="get_details" onClick="get_details('+i+');">Details</a>'+
+						  '<a href="#" class="thumb-btn" id="del_stock" onClick="del_stock('+i+');">Delete</a>'+
 						  '<a href="#" class="thumb-btn" id="update_stock" onClick="update_stock('+i+');">Update</a>'+
                             '<a data-toggle="modal" href="#details" id="det" style="display:none;" class="thumb-btn">Details</a>'+
                             '<a data-toggle="modal" href="#delete" id="del" style="display:none;" class="thumb-btn">Delete</a>'+
@@ -62,7 +62,7 @@ function book_table(){
 							counter = 0;
 							break;
 						}
-						$("#display_list").append('</ul></div>');
+						$("#test").append('</ul></div>');
 					}
 					
 				}
