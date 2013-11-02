@@ -19,7 +19,18 @@
                     <div class="page-header">
                   <h2>All Books</h2>
                 </div>
-               <div id="test"></div><div style="clear:both;"></div>
+                <div class="row-fluid sortby">
+                  Sort By:
+                  <select style="width:150px;">
+                              <option>Newest</option>
+                              <option>Featured</option>
+                              <option>Best Selling</option>
+                              <option>Trending</option>
+                          </select>
+                    <hr  />
+                </div>
+               <div id="display_list"></div>
+               <div style="clear:both;"></div>
                
                 <!--<div class="pagination pagination-centered">
                 <ul>
@@ -71,7 +82,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
           <h4 class="modal-title" id="det_title">Kara Walker</h4>
         </div>
         <div class="modal-body" id="all_details">
@@ -90,7 +101,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
           <h4 class="modal-title" id="del_title">Kara Walker</h4>
         </div>
         <div class="modal-body">
@@ -112,36 +123,46 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
           <h4 class="modal-title">Update</h4>
         </div>
         <div class="modal-body">
-          <form action="" method="post">
+          <form action="" id="update_form" method="post">
               <legend>Kara Walker</legend>
-              <label>Label name</label>
-              <input type="text" placeholder="Type something…">
-              <span class="help-block">Example block-level help text here.</span>
-              <label>Label name</label>
-              <input type="text" placeholder="Type something…">
-              <span class="help-block">Example block-level help text here.</span>
-              <label>Label name</label>
-              <input type="text" placeholder="Type something…">
-              <span class="help-block">Example block-level help text here.</span>
-              <label>Label name</label>
-              <input type="text" placeholder="Type something…">
-              <span class="help-block">Example block-level help text here.</span>
-              <label>Label name</label>
-              <input type="text" placeholder="Type something…">
-              <span class="help-block">Example block-level help text here.</span>
-              <label class="checkbox">
-                <input type="checkbox"> Check me out
-              </label>
-              <button type="submit" class="btn">Submit</button>
+              <label>Price</label>
+              <input type="text" id="price" name="price">
+              
+              <span class="help-block"></span>
+              
+              <label>Delivery Cost Within City</label>
+              <input type="text" id="delivery_cost_within_city" name="delivery_cost_within_city">
+              
+              <span class="help-block"></span>
+              
+              <label>Delivery Cost Outof City</label>
+              <input type="text" id="delivery_cost_outof_city" name="delivery_cost_outof_city">
+              
+              <span class="help-block"></span>
+              
+              <label>Store Reference no. for book</label>
+              <input type="text" id="store_ref" name="store_ref">
+              
+              <span class="help-block"></span>
+              
+              <label>Stock Quantity</label>
+              <input type="text" id="qty" name="qty">
+              
+              <span class="help-block"></span>
+              
+                <input type="hidden" name="book_id" id="updt_book_id" />
+                <input type="hidden" name="stock_id" id="updt_stock_id" />
+                <input type="hidden" name="store_id" id="updt_store_id" />
+                  
             </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Finish</button>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-default" id="update_details" data-dismiss="modal">Update</button>
+          <button type="button" class="btn btn-default" id="cancel_update" data-dismiss="modal">Cancel</button>
         </div>
       </div>
     </div>
@@ -153,7 +174,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
           <h4 class="modal-title" id="success_title">Kara Walker</h4>
         </div>
         <div class="modal-body" id="success_msg">

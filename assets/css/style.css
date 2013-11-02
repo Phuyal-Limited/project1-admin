@@ -1,8 +1,4 @@
 /* Start : Override Bootstrap navigation */
-.clear{
-  clear:both;
-
-}
 .navbar-inner, footer {
   border: none;
   padding: 15px 0;
@@ -107,6 +103,22 @@
     -moz-border-radius: 5px;
 }
 
+.main-search{
+  padding:10px;
+}
+.main-search select{
+  outline:none;
+  width:200px;
+
+}
+.sortby{
+  padding-top:30px;
+}
+
+.index-thumb{
+  font-size:13px;
+  padding-bottom:20px;
+}
 
 /*hr.carved {
   clear: both; 
@@ -167,12 +179,20 @@
           border-radius: 0 0 5px 5px;
 }
 .widget-footer {
-  padding: 6%;
+  padding: 15px;
   background-color: #EEEEEC;
   border-top: 1px solid #DDD;
 }
 .widget-footer p {
   margin: 0;
+}
+.widget-footer a{
+  cursor: pointer;
+  text-decoration: none;
+  border:1px solid #b8b9b9;
+  border-radius: 3px;
+  padding:5px;
+  /*margin:5px;*/
 }
 .features {
   margin-top: 10px;
