@@ -131,6 +131,10 @@ class Database extends CI_Model{
 		$this->db->query("DELETE FROM `shopstock` WHERE stock_id ='$stock_id'");
 	}
 	
+	public function update_item($book_id, $stock_id, $store_id, $price, $delivery_cost_within_city, $delivery_cost_outof_city, $store_ref, $qty){
+		$data = $this->db->query("UPDATE `shopstock` SET price='$price', delivery_cost_within_city='$delivery_cost_within_city', delivery_cost_outof_city='$delivery_cost_outof_city', item_no_for_store_ref='$store_ref', stock='$qty' WHERE stock_id='$stock_id'");
+		
+	}
 }
 
 ?>

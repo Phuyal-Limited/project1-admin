@@ -281,10 +281,7 @@ class Main extends CI_Controller {
 		$this->load->view('footer-dash');
 	}
 
-	public function update_book(){
-		$data['title'] = 'Update | Nepal Reads';
-		$this->load->view('update-book', $data);
-	}
+	
 	
 	public function get_details(){
 		if(!isset($_POST['book_id'])){
@@ -308,6 +305,32 @@ class Main extends CI_Controller {
 			$this->database->delete_item($book_id, $stock_id, $store_id);
 			echo 'Item Deleted Successfully';exit();
 		}
+	}
+	
+	public function update_item(){
+		if(!isset($_POST['book_id'])){
+			$this->index();
+		}else{
+			
+			$book_id = $_POST['book_id'];
+			
+			$stock_id = $_POST['stock_id'];
+			$store_id = $_POST['store_id'];
+			$price = $_POST['price'];
+			$delivery_cost_within_city = $_POST['delivery_cost_within_city'];
+			$delivery_cost_outof_city = $_POST['delivery_cost_outof_city'];
+			$store_ref = $_POST['store_ref'];
+			$qty = $_POST['qty'];
+			
+			$this->database->update_item($book_id, $stock_id, $store_id, $price, $delivery_cost_within_city, $delivery_cost_outof_city, $store_ref, $qty);
+			echo 'Item Updated Successfully';exit();
+		}
+	}
+	
+	public function message()
+	{
+		$data['title'] = 'Message | Nepal Reads';
+		$this->load->view('messages', $data);	
 	}
 	
 }
