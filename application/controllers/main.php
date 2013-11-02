@@ -159,7 +159,7 @@ class Main extends CI_Controller {
 						$image_details = array(
 							'image_id' => $img_id,
 							'name' => $this->input->post('book_name'),
-							'path' => 'http://localhost/admin.nepalreads.com/assets/images/book_image/'.$img_id.'.'.$ext_name, 
+							'path' => 'http://admin.nepalreads.com/assets/images/book_image/'.$img_id.'.'.$ext_name, 
 							'alt' => $this->input->post('book_name'),
 							'system_image' => 0,
 							'shared' => 0
