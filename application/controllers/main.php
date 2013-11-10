@@ -15,6 +15,12 @@ class Main extends CI_Controller {
 		$data['category'] = $this->database->category();
 		$this->load->view('add-book', $data);	
 	}
+	public function confirm()
+	{
+		$data['title'] = 'Confirm | Nepal Reads';
+		$data['category'] = $this->database->category();
+		$this->load->view('confirm', $data);	
+	}
 
 	public function dashboard(){
 		//check for session
