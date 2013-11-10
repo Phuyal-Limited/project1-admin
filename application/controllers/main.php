@@ -159,7 +159,7 @@ class Main extends CI_Controller {
 						$target=$dir.$img_id.'.'.$ext_name;
 
 						$abc = move_uploaded_file($tempname, $target);
-						echo $abc;exit();
+						echo "$target $abc";exit();
 						$image_details = array(
 							'image_id' => $img_id,
 							'name' => $this->input->post('book_name'),
