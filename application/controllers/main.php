@@ -156,8 +156,9 @@ class Main extends CI_Controller {
 						if($size > 2097152){
 							echo 'File Size Larger';exit();
 						}
-						print_r($_FILES['image']);exit();
-						$abc = move_uploaded_file($tempname, $dir.$img_id.'.'.$ext_name);
+						$target=$dir.$img_id.'.'.$ext_name;
+						echo $target;exit();
+						$abc = move_uploaded_file($tempname, $target);
 						echo $abc;exit();
 						$image_details = array(
 							'image_id' => $img_id,
