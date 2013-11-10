@@ -140,7 +140,7 @@ class Main extends CI_Controller {
 						
 						$ext_name = $ext[1];
 						
-						$dir = 'images/';
+						$dir = 'assests/images/book_image/';
 						
 						$tempname = $_FILES['image']['tmp_name'];
 						$size = $_FILES['image']['size'];
