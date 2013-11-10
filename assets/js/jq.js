@@ -220,13 +220,13 @@ $("#submit").click(function(event) {
 	
     $.ajax({ 
 		type: "POST",
-        contentType:false,//attr( "enctype", "multipart/form-data" ),
+        contentType:false, //attr( "enctype", "multipart/form-data" ),
         processData:false,
         url: 'publish', 
         data: oData, 
         success: function( data ) 
         { 
-        	alert(data);
+        	
 			if(data=='Book Successfully Added.'){
 				$("#popup").fadeIn(500);
 				$("#popup").html('Book Successfully Added.');
