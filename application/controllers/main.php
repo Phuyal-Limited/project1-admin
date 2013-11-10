@@ -140,7 +140,7 @@ class Main extends CI_Controller {
 						
 						$ext_name = $ext[1];
 						
-						$dir = './assets/images/book_image/';
+						$dir = '/assets/images/book_image/';
 						
 						$tempname = $_FILES['image']['tmp_name'];
 						$size = $_FILES['image']['size'];
@@ -157,7 +157,7 @@ class Main extends CI_Controller {
 							echo 'File Size Larger';exit();
 						}
 						$target=$dir.$img_id.'.'.$ext_name;
-						
+
 						$abc = move_uploaded_file($tempname, $target);
 						echo $abc;exit();
 						$image_details = array(
