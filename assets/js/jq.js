@@ -226,7 +226,7 @@ $("#submit").click(function(event) {
         data: oData, 
         success: function( data ) 
         { 
-        	
+        	alert(data);
 			if(data=='Book Successfully Added.'){
 				$("#popup").fadeIn(500);
 				$("#popup").html('Book Successfully Added.');

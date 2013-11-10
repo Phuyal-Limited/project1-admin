@@ -59,9 +59,11 @@ class Main extends CI_Controller {
 		if (!isset($_POST['name'])){
 			$this->index();
 		}else{
+			$pass = $_POST['pass'];
+			$pass = sha1($pass);
 			$login_details = array(
 				'user' => $_POST['name'],
-				'pass' => $_POST['pass']
+				'pass' => $pass
 			);
 			
 			$output = $this->database->login($login_details);
@@ -122,6 +124,7 @@ class Main extends CI_Controller {
 						$image_details = array();
 					}else{
 						//image inserted
+						
 						$image_id = $this->database->image_id();
 						
 						if($image_id == array()){
@@ -154,8 +157,8 @@ class Main extends CI_Controller {
 							echo 'File Size Larger';exit();
 						}
 						
-						move_uploaded_file($tempname, $dir.$img_id.'.'.$ext_name);
-						
+						$abc = move_uploaded_file($tempname, $dir.$img_id.'.'.$ext_name);
+						echo $abc;exit();
 						$image_details = array(
 							'image_id' => $img_id,
 							'name' => $this->input->post('book_name'),

@@ -15,7 +15,7 @@ function book_table(){
 			url: 'book_page',
 			dataType: 'json',
 			success: function(response){
-
+				
 				//var r = response.informations.length;
 				//var lth = response.length;
 				var sz = response[0].length;
@@ -25,12 +25,16 @@ function book_table(){
 				var x=0;
 				var y=0;
 				var i=0;
+				var display = '';
 				for(x=0; x<=divsz; x++){
-					$("#display_list").append('<div class="row-fluid"><ul class="thumbnails">');
-					while(y<sz){
+					
+				display += '<div class="row-fluid"><ul class="thumbnails">';
+					
+				while(y<sz){
 						i++;
 						counter++;
-					$("#display_list").append('<li class="span3">'+
+					
+				display +=	'<li class="span3">'+
                       '<div class="thumbnail">'+
                         '<img src="'+response[2][y].path+'" alt="'+response[2][y].alt+'" style="height:150px; width:150px;">'+
                         '<div class="caption">'+
@@ -56,18 +60,21 @@ function book_table(){
                           '</p>'+
                         '</div>'+
                       '</div>'+
-                    '</li>');
+                    '</li>';
 						y++;
 						if(counter==4){
-							counter = 0;
+							counter=0;
 							break;
 						}
-						$("#display_list").append('</ul></div>');
 					}
+					display += '</ul></div>';
 					
 				}
+					
+				$("#display_list").append(display);
+					
 				
-                   
+					
 			}
 		});
 }
