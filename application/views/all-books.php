@@ -21,11 +21,11 @@
                 </div>
                 <div class="row-fluid sortby">
                   Sort By:
-                  <select style="width:150px;">
-                              <option>Newest</option>
-                              <option>Featured</option>
-                              <option>Best Selling</option>
-                              <option>Trending</option>
+                  <select id="sort" style="width:150px;">
+                              <option value="newest">Newest</option>
+                              <option value="featured">Featured</option>
+                              <option value="best_selling">Best Selling</option>
+                              <option value="trending'">Trending</option>
                           </select>
                     <hr  />
                 </div>

@@ -135,6 +135,37 @@ class Database extends CI_Model{
 		$data = $this->db->query("UPDATE `shopstock` SET price='$price', delivery_cost_within_city='$delivery_cost_within_city', delivery_cost_outof_city='$delivery_cost_outof_city', item_no_for_store_ref='$store_ref', stock='$qty' WHERE stock_id='$stock_id'");
 		
 	}
+
+	public function confirm_success($store_id, $book_id){
+		$output = $this->db->query("SELECT * FROM `shopstock` WHERE store='$store_id' && book_id='$book_id'");
+		$output = $output->result();
+		$output  = get_object_vars($output[0]);
+
+		$book_details = $this->db->query("SELECT * FROM `books` WHERE book_id='$book_id'");
+		$book_details = $book_details->result();
+		$book_details = get_object_vars($book_details[0]);
+		
+		$category = $book_details['category_id'];
+		$category = explode(', ', $category);
+		$cat = array();
+		for($i=0;$i<sizeof($category);$i++){
+			$cat_id = $category[$i];
+			$category_details = $this->db->query("SELECT * FROM `category` WHERE category_id='$cat_id'");
+			$category_details = $category_details->result();
+			$name = $category_details[0]->name;
+			$cat[$i] = $name;
+		}
+		$category = implode(', ', $cat);
+
+		$image_id = $book_details['image_id'];
+
+		$image_details = $this->db->query("SELECT * FROM `images` WHERE image_id='$image_id'");
+		$image_details = $image_details->result();
+		$image_details = get_object_vars($image_details[0]);
+
+		$all = array($output, $book_details, $image_details, $category);
+		return $all;
+	}
 }
 
 ?>

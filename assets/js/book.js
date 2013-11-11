@@ -2,6 +2,9 @@
 
 $(document).ready(function(){
 	done();
+	$("#sort").change(function(){
+		alert('hey');
+	});
 	
 });
 

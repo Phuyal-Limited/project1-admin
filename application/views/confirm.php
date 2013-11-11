@@ -18,7 +18,7 @@
                     <div class="row-fluid">
                       <div class="span12">
                         <div class="confirm-msg">
-                          <p>  A new book <span> Kara Walker </span> has been added sucessfully. </p>
+                          <p>  A new book <span> <?php echo $details[1]['book_name']?> </span> has been added sucessfully. </p>
                         </div>
                       </div>
                     </div>
@@ -26,9 +26,9 @@
                       <div class="span4"></div>
                       <div class="span4">
                           <div class="thumbnail" >
-                            <img src="<?php echo base_url('assets/images/placeholder-260x150.jpg');?>" alt="Wara Walker">
+                            <img src="<?php echo $details[2]['path'];?>" alt="<?php echo $details[2]['alt']?>">
                             <div class="new-book-caption">
-                              <p><a href="">Kara Walker</a> </p>
+                              <p><a href=""><?php echo $details[1]['book_name']?></a> </p>
                             </div>
                           </div>
                       </div>
@@ -39,13 +39,20 @@
                         <p>Details:</p>
                       </div>
                       <div class="details-body">
-                        <p>ISBN 10:</p>
-                        <p>ISBN 13:</p>
-                        <p>Book Title</p>
-                        <p>Authur:</p>
+                        <p>ISBN 10: <?php echo $details[1]['isbn10'];?></p>
+                        <p>ISBN 13: <?php echo $details[1]['isbn13'];?></p>
+                        <p>Author: <?php echo $details[1]['author'];?></p>
+                        <p>Publisher: <?php echo $details[1]['publisher'];?></p>
+                        <p>Language: <?php echo $details[1]['language'];?></p>
+                        <p>Category: <?php echo $details[3];?></p>
+                        <p>Price: <?php echo $details[0]['price'];?></p>
+                        <p>Delivery Cost within City: <?php echo $details[0]['delivery_cost_within_city'];?></p>
+                        <p>Delivery Cost outof City: <?php echo $details[0]['delivery_cost_outof_city'];?></p>
+                        <p>Description:</p>
+                        <p><?php echo $details[1]['description'];?></p>
                       </div>
                     </div>
-                    <button class="btn">Add New Book</button>                    
+                    <button id="add_new_book" class="btn">+Add New Book</button>                    
                           
                 <!-- end:section2 -->
             </div>

@@ -226,14 +226,17 @@ $("#submit").click(function(event) {
         data: oData, 
         success: function( data ) 
         { 
+        	var response = data.split('/');
         	
-			if(data=='Book Successfully Added.'){
-				$("#popup").fadeIn(500);
+			if(response[0]=='Book Successfully Added.'){
+				window.location.replace("confirm?stid="+response[1]+" && bkid="+response[2]);
+				
+				/*$("#popup").fadeIn(500);
 				$("#popup").html('Book Successfully Added.');
 				$("#publish")[0].reset();
 				$("#description").text("");
 				$('#img_prev').attr('src', "#")
-				$('#img_prev').hide();
+				$('#img_prev').hide();*/
 			}
 			if(data =='Book already exists in your store'){
 				$("#popup").fadeIn(500);
@@ -337,6 +340,10 @@ $("#update_details").click(function(){
 return false; 
 });
 
+//clicked add new book button
+	$("#add_new_book").click(function(){
+		window.location.replace('add_book');
+	});
 
 });
 
@@ -463,3 +470,4 @@ window.location.replace("all_books");
 
 
 }
+

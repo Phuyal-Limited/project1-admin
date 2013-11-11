@@ -17,9 +17,18 @@ class Main extends CI_Controller {
 	}
 	public function confirm()
 	{
-		$data['title'] = 'Confirm | Nepal Reads';
-		$data['category'] = $this->database->category();
-		$this->load->view('confirm', $data);	
+		if(isset($_GET['stid']) && isset($_GET['bkid'])){
+			$store_id = $_GET['stid'];
+			$book_id = $_GET['bkid'];
+			
+			$data['title'] = 'Confirm | Nepal Reads';
+			$data['category'] = $this->database->category();
+			$data['details'] = $this->database->confirm_success($store_id, $book_id);
+			$this->load->view('confirm', $data);	
+		}else{
+			redirect('index');
+		}
+		
 	}
 
 	public function dashboard(){
@@ -238,7 +247,7 @@ class Main extends CI_Controller {
 					
 					$this->database->publish_book($book_details, $stock_details, $image_details);
 					
-					echo 'Book Successfully Added.';exit();
+					echo 'Book Successfully Added.'.'/'.$store_id.'/'.$id;exit();
 	
 				}else{                                   //book_id exists so add only prices and quantity in shop_stock
 					
@@ -266,7 +275,7 @@ class Main extends CI_Controller {
 					);
 					
 					$this->database->input_shopstock($stock_details);
-					echo 'Book Successfully Added.';exit();
+					echo 'Book Successfully Added.'.'/'.$store_id.'/'.$id;exit();
 				}
 			}else{                                       //stock record exists			
 				echo "Book already exists in your store";exit();
