@@ -18,10 +18,15 @@ function book_table(){
 			url: 'book_page',
 			dataType: 'json',
 			beforeSend: function(){
-				$("#display_list").html('<img src="http://admin.nepalreads.com/assets/images/loading.gif" height="150px" width="150px">');
-			},
-			success: function(response){
-				$("#display_list").html('');
+        	
+        		$("#load").click();
+        		$("#success_msg_button").hide();
+        		$("#success_load p").html('<img src="http://admin.nepalreads.com/assets/images/loading.gif" height="150px" width="150px"><br />Loading');
+        		
+        	}, 
+        	success: function( response ) 
+        	{ 
+				$("#success_msg_button").click();
 				//var r = response.informations.length;
 				//var lth = response.length;
 				var display = '';
@@ -60,13 +65,10 @@ function book_table(){
 							  '<input type="hidden" id="book_id'+i+'" value="'+response[1][y].book_id+'">'+
 							  '<input type="hidden" id="stock_id'+i+'" value="'+response[0][y].stock_id+'">'+
 							  '<input type="hidden" id="store_id'+i+'" value="'+response[0][y].store+'">'+
-							  '<a href="#" class="thumb-btn" id="get_details" onClick="get_details('+i+');">Details</a>&nbsp;'+
-							  '<a href="#" class="thumb-btn" id="del_stock" onClick="del_stock('+i+');">Delete</a>&nbsp;'+
-							  '<a href="#" class="thumb-btn" id="update_stock" onClick="update_stock('+i+');">Update</a>'+
-	                            '<a data-toggle="modal" href="#details" id="det" style="display:none;" class="thumb-btn">Details</a>'+
-	                            '<a data-toggle="modal" href="#delete" id="del" style="display:none;" class="thumb-btn">Delete</a>'+
-	                            '<a data-toggle="modal" href="#update" id="updt" style="display:none;" class="thumb-btn">Update</a>'+
-								'<a data-toggle="modal" href="#success_event" id="success_display" style="display:none;" class="thumb-btn">Success Event</a>'+
+							  '<a href="javascript:void(0)" class="thumb-btn" id="get_details" onClick="get_details('+i+');">Details</a>&nbsp;'+
+							  '<a href="javascript:void(0)" class="thumb-btn" id="del_stock" onClick="del_stock('+i+');">Delete</a>&nbsp;'+
+							  '<a href="javascript:void(0)" class="thumb-btn" id="update_stock" onClick="update_stock('+i+');">Update</a>'+
+	                            
 	                          '</p>'+
 	                        '</div>'+
 	                      '</div>'+

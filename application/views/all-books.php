@@ -73,7 +73,11 @@
     
     <!-- End: FOOTER -->
 
-
+<a data-toggle="modal" href="#details" id="det" style="display:none;" class="thumb-btn">Details</a>
+<a data-toggle="modal" href="#delete" id="del" style="display:none;" class="thumb-btn">Delete</a>
+<a data-toggle="modal" href="#update" id="updt" style="display:none;" class="thumb-btn">Update</a>
+<a data-toggle="modal" href="#success_event" id="success_display" style="display:none;" class="thumb-btn">Success Event</a>
+<a data-toggle="modal" href="#loading" id="load" style="display:none;" class="thumb-btn">Details</a>
 
 
 <!-- moddal for details -->
@@ -111,7 +115,7 @@
           Are you sure you want to delete this book.
         </div>
         <div class="modal-footer">
-          <button type="button" id="del_item" class="btn btn-default" data-dismiss="modal">Delete</button>
+          <button type="button" id="del_item" class="btn btn-default" >Delete</button>
           <button type="button" id="cancel_delete" class="btn btn-default" data-dismiss="modal">Cancel</button>
         </div>
       </div>
@@ -161,7 +165,7 @@
             </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" id="update_details" data-dismiss="modal">Update</button>
+          <button type="button" class="btn btn-default" id="update_details" >Update</button>
           <button type="button" class="btn btn-default" id="cancel_update" data-dismiss="modal">Cancel</button>
         </div>
       </div>
@@ -187,4 +191,21 @@
       </div>
     </div>
   </div>  <!-- END:moddal for delete/update success -->
-    
+    <!-- <a data-toggle="modal" href="#details" class="btn btn-primary">Launch modal</a> -->
+  <div class="modal fade" id="loading" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
+          
+        </div>
+        <div class="modal-body" id="success_load">
+         <p>this is test</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="success_msg_button" class="btn btn-default" data-dismiss="modal" >OK</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>  <!-- END:moddal for delete/update success -->

@@ -63,7 +63,8 @@ $("#isbn10").keyup(function(){
 				
 			},
 			beforeSend: function(){
-        		$("#load").click();	
+        		$("#load").click();
+        		$("#success_msg_button").hide();
         		$("#success_load p").html('<img src="http://admin.nepalreads.com/assets/images/loading.gif" height="150px" width="150px">');
        		},
 			success: function(response){
@@ -145,7 +146,8 @@ $("#isbn13").keyup(function(){
 				
 			},
 			beforeSend: function(){
-        		$("#load").click();	
+        		$("#load").click();
+        		$("#success_msg_button").hide();
         		$("#success_load p").html('<img src="http://admin.nepalreads.com/assets/images/loading.gif" height="150px" width="150px">');
        		},
 			success: function(response){
@@ -240,11 +242,9 @@ $("#submit").click(function(event) {
         data: oData, 
         beforeSend: function(){
         	
-        	$("#load").click();	
+        	$("#load").click();
+        	$("#success_msg_button").hide();
         	$("#success_load p").html('<img src="http://admin.nepalreads.com/assets/images/loading.gif" height="150px" width="150px"><br />Loading');
-        },
-        complete: function(){
-        	$("#success_msg_button").click();
         },
         success: function( data ) 
         { 
@@ -315,6 +315,7 @@ $("#del_item").click(function(){
 	var book_id = $("#del_book_id").val();
 	var stock_id = $("#del_stock_id").val();
 	var store_id = $("#del_store_id").val();
+	$("#cancel_delete").click();
 	$.ajax({ 
         type: "POST",
         url: 'delete_item', 
@@ -322,14 +323,20 @@ $("#del_item").click(function(){
 			book_id: book_id,
 			stock_id: stock_id,
 			store_id: store_id
-		}, 
+		},beforeSend: function(){
+        	
+        	$("#load").click();
+        	$("#success_msg_button").hide();
+        	$("#success_load p").html('<img src="http://admin.nepalreads.com/assets/images/loading.gif" height="150px" width="150px"><br />Loading');
+        },	 
         success: function( data ) 
         { 
+        	$("#success_msg_button").click();
         	
         	$('#success_title').text('');
 			$('#success_msg').html('<h4>Item Deleted Successfully.</h4>');
 			
-			$("#cancel_delete").click();
+			
 			$("#success_display").click();
 			
 		}
@@ -348,7 +355,7 @@ $("#update_details").click(function(){
 	var delivery_cost_outof_city = $('#delivery_cost_outof_city').val();
 	var store_ref = $('#store_ref').val();
 	var qty = $('#qty').val();
-	
+	$("#cancel_update").click();
 	$.ajax({ 
         type: "POST",
         url: 'update_item', 
@@ -361,14 +368,20 @@ $("#update_details").click(function(){
 			delivery_cost_outof_city: delivery_cost_outof_city,
 			store_ref: store_ref,
 			qty: qty
-		}, 
+		},beforeSend: function(){
+        	
+        	$("#load").click();
+        	$("#success_msg_button").hide();
+        	$("#success_load p").html('<img src="http://admin.nepalreads.com/assets/images/loading.gif" height="150px" width="150px"><br />Loading');
+        },		 
         success: function( data ) 
         { 
+        	$("#success_msg_button").click();
         	
 			$('#success_title').text('');
 			$('#success_msg').html('<h4>Item Updated Successfully.</h4>');
 			
-			$("#cancel_update").click();
+			
 			$("#success_display").click();
 			
 		}
@@ -416,10 +429,16 @@ function get_details(i){
 			book_id: book_id,
 			stock_id: stock_id,
 			store_id: store_id
-		}, 
+		},beforeSend: function(){
+        	
+        	$("#load").click();
+        	$("#success_msg_button").hide();
+        	$("#success_load p").html('<img src="http://admin.nepalreads.com/assets/images/loading.gif" height="150px" width="150px"><br />Loading');
+        }, 
         success: function( data ) 
         { 
-        	
+        	$("#success_msg_button").click();
+
 			$('#det_title').text(data[0].book_name);
 			$('#all_details').html('<div><img src="'+data[2].path+'" height="150px" width="150px" /><br/>' +
 			'<h4>Description</h4><hr/>' +
@@ -459,9 +478,16 @@ function del_stock(i){
 			book_id: book_id,
 			stock_id: stock_id,
 			store_id: store_id
-		}, 
+		},
+		beforeSend: function(){
+        	
+        	$("#load").click();
+        	$("#success_msg_button").hide();
+        	$("#success_load p").html('<img src="http://admin.nepalreads.com/assets/images/loading.gif" height="150px" width="150px"><br />Loading');
+        },
         success: function( data ) 
         { 
+        	$("#success_msg_button").click();
         	$('#del_title').text(data[0].book_name);
 			$("#del").click();
 		}
@@ -483,10 +509,15 @@ function update_stock(i){
 			book_id: book_id,
 			stock_id: stock_id,
 			store_id: store_id
-		}, 
+		},beforeSend: function(){
+        	
+        	$("#load").click();
+        	$("#success_msg_button").hide();
+        	$("#success_load p").html('<img src="http://admin.nepalreads.com/assets/images/loading.gif" height="150px" width="150px"><br />Loading');
+        },
         success: function( data ) 
         { 
-        	
+        	$("#success_msg_button").click();
 			
 			$('#update_form legend').text(data[0].book_name);
 			$('#price').val(data[1].price);
