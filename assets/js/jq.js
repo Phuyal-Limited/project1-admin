@@ -22,8 +22,11 @@ $("#submit-button").click(function () {
 				name: user,
 				pass: pass 
 			},
+			beforeSend: function(){
+				$("#msg").html('<img src="http://localhost/admin.nepalreads.com/assets/images/loading.gif" height="150px" width="150px">');
+			},
 			success: function(response){
-				
+				$("#msg").html('');
 			if(response==='successful'){
 					window.location.replace("dashboard");
 				}else{
@@ -59,8 +62,12 @@ $("#isbn10").keyup(function(){
 				isbn: isbn10,
 				
 			},
+			beforeSend: function(){
+        		$("#load").click();	
+        		$("#success_load p").html('<img src="http://localhost/admin.nepalreads.com/assets/images/loading.gif" height="150px" width="150px">');
+       		},
 			success: function(response){
-				
+				$("#success_msg_button").click();
 				if(response.error === '1'){
 					if(isbn_check == "0"){
 						//do nothing
@@ -137,8 +144,12 @@ $("#isbn13").keyup(function(){
 				isbn: isbn13,
 				
 			},
+			beforeSend: function(){
+        		$("#load").click();	
+        		$("#success_load p").html('<img src="http://localhost/admin.nepalreads.com/assets/images/loading.gif" height="150px" width="150px">');
+       		},
 			success: function(response){
-				
+				$("#success_msg_button").click();
 				if(response.error === '1'){
 					if(isbn_check == "0"){
 					
@@ -196,23 +207,26 @@ $("#isbn13").keyup(function(){
 $("#submit").click(function(event) {
 	var isbn10 = $("#isbn10").val();
 	var isbn13 = $("#isbn13").val();
+	var isbn10att = $('#isbn10').is('[disabled=disabled]')
+	var isbn13att = $('#isbn13').is('[disabled=disabled]')
+
 	$("#publish :input").attr('disabled', false);
 	$("#description").text("");
 	var category_id = $("#category_id").val();
 	
 	if(isbn10.length != 10){
-		$("#popup").fadeIn(500);
-		$("#popup").html('ISBN10 not valid.');
+		$("#msg").click();	
+        $("#success_msg p").html('ISBN10 Not of 10 Digits.');
 		return false;
 	}
 	if(isbn13.length != 13){
-		$("#popup").fadeIn(500);
-		$("#popup").html('ISBN13 not valid.');
+		$("#msg").click();	
+        $("#success_msg p").html('ISBN13 Not of 13 Digits.');
 		return false;
 	}
 	if(category_id == 'Please Choose...'){
-		$("#popup").fadeIn(500);
-		$("#popup").html('Category Not Selected.');
+		$("#msg").click();	
+        $("#success_msg p").html('Category Not Selected.');
 		return false;
 	}
 	
@@ -224,31 +238,52 @@ $("#submit").click(function(event) {
         processData:false,
         url: 'publish', 
         data: oData, 
+        beforeSend: function(){
+        	
+        	$("#load").click();	
+        	$("#success_load p").html('<img src="http://localhost/admin.nepalreads.com/assets/images/loading.gif" height="150px" width="150px"><br />Loading');
+        },
+        complete: function(){
+        	$("#success_msg_button").click();
+        },
         success: function( data ) 
         { 
+        	
+        	$("#success_msg_button").click();
+        	
         	var response = data.split('/');
         	
 			if(response[0]=='Book Successfully Added.'){
 				window.location.replace("confirm?stid="+response[1]+" && bkid="+response[2]);
 				
-				/*$("#popup").fadeIn(500);
-				$("#popup").html('Book Successfully Added.');
-				$("#publish")[0].reset();
-				$("#description").text("");
-				$('#img_prev').attr('src', "#")
-				$('#img_prev').hide();*/
+				
 			}
-			if(data =='Book already exists in your store'){
-				$("#popup").fadeIn(500);
-				$("#popup").html('Book already exists in your store.');
+			if(response[0] =='Book already exists in your store'){
+				
+				$("#msg").click();	
+        		$("#success_msg p").html('Book already exists in your store');
+				$("#publish :input").attr('disabled', true);
+				if(isbn10att==false){
+					$("#isbn10").attr('disabled', false);
+				}
+				if(isbn13att==false){
+					$("#isbn13").attr('disabled', false);
+				}
+				$("#price").attr('disabled', false);
+				$("#qty").attr('disabled', false);
+				$("#store_ref").attr('disabled', false);
+				$("#delivery_cost_outof_city").attr('disabled', false);
+				$("#delivery_cost_within_city").attr('disabled', false);
+				$("#book_id").attr('disabled', false);
+
 			}
-			if(data == 'File Size Larger'){
-				$("#popup").fadeIn(500);
-				$("#popup").html('Large Image Size.');
+			if(response[0] == 'File Size Larger'){
+				$("#msg").click();	
+        		$("#success_msg p").html('File Size Larger.');
 			}
-			if(data == 'Invalid File Type'){
-				$("#popup").fadeIn(500);
-				$("#popup").html('Invalid File Type (Image).');
+			if(response[0] == 'Invalid File Type'){
+				$("#msg").click();	
+        		$("#success_msg p").html('Invalid File Type.');
 			}
 		
 		/*	else
@@ -290,6 +325,7 @@ $("#del_item").click(function(){
 		}, 
         success: function( data ) 
         { 
+        	
         	$('#success_title').text('');
 			$('#success_msg').html('<h4>Item Deleted Successfully.</h4>');
 			
@@ -466,8 +502,8 @@ function update_stock(i){
 
 //when ok clicked after item delete
 function success_final(){
-window.location.replace("all_books");
-
+//window.location.replace("all_books");
+book_table();
 
 }
 

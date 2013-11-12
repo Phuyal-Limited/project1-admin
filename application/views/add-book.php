@@ -87,11 +87,10 @@
               <label>Store Item Reference</label>
               <input type="text" name="store_ref" id="store_ref" style="width:92%;">
             </fieldset><div class="clear"></div>
-                        <div id="popup" style="background-color:green; display:none; width:48%; margin-left:25%; height:90px; color:white; z-index:100; text-align:center; vertical-align:middle; font-size:36px;"></div>
-                        <div class="clear"></div>
             <fieldset style="width:48%; float:left;"> 
               <label>Image</label>&nbsp;
               <input type="file" name="image" id="image" onChange="readURL(this);" style="width:92%;">
+              <div id="image_set"><div>
               <br /><img  style="display:none;" id="img_prev" src="#" alt="Image Preview" />
                       </fieldset>
                         <fieldset style="width:48%; float:right;"> 
@@ -127,7 +126,46 @@
         </div>
       <!-- End: container -->
     </div>
-    
+    <a data-toggle="modal" href="#msgsnd" id="msg" style="display:none;" class="thumb-btn">Details</a>
+    <a data-toggle="modal" href="#loading" id="load" style="display:none;" class="thumb-btn">Details</a>
+<!-- <a data-toggle="modal" href="#details" class="btn btn-primary">Launch modal</a> -->
+  <div class="modal fade" id="msgsnd" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
+          
+        </div>
+        <div class="modal-body" id="success_msg">
+         <p>this is test</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="success_button" class="btn btn-default" data-dismiss="modal" >OK</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>  <!-- END:moddal for delete/update success -->
+
+  <!-- <a data-toggle="modal" href="#details" class="btn btn-primary">Launch modal</a> -->
+  <div class="modal fade" id="loading" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
+          
+        </div>
+        <div class="modal-body" id="success_load">
+         <p>this is test</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="success_msg_button" class="btn btn-default" data-dismiss="modal" >OK</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>  <!-- END:moddal for delete/update success -->
+
     <!-- End: FOOTER -->
     <?php  
       include("footer-dash.php");

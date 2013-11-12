@@ -112,7 +112,7 @@ class Main extends CI_Controller {
 	public function publish(){
 		//check if data from ajax submitted or not
 		
-		if (!isset($_POST['book_name'])){
+		if (!isset($_POST['isbn10'])){
 			$this->index();
 		}else{
 			
@@ -134,7 +134,7 @@ class Main extends CI_Controller {
 					
 					//image not inserted so set default image_id
 					if($imgcheck != 0){
-						$img_id = 2;
+						$img_id = 1;
 						
 						$image_details = array();
 					}else{
@@ -143,7 +143,7 @@ class Main extends CI_Controller {
 						$image_id = $this->database->image_id();
 						
 						if($image_id == array()){
-							$img_id = 1;
+							$img_id = 2;
 						}else{
 							$img_id = $image_id[0]->image_id;
 							
@@ -216,7 +216,7 @@ class Main extends CI_Controller {
 					}
 					
 					$book_details = array(
-						//'book_id' => '',
+						'book_id' => $id,
 						'book_name' => $this->input->post('book_name'),
 						'isbn10' => $this->input->post('isbn10'),
 						'isbn13' => $this->input->post('isbn13'),
@@ -275,7 +275,7 @@ class Main extends CI_Controller {
 					);
 					
 					$this->database->input_shopstock($stock_details);
-					echo 'Book Successfully Added.'.'/'.$store_id.'/'.$id;exit();
+					echo 'Book Successfully Added.'.'/'.$store_id.'/'.$book_id;exit();
 				}
 			}else{                                       //stock record exists			
 				echo "Book already exists in your store";exit();
