@@ -18,7 +18,7 @@ function book_table(){
 			url: 'book_page',
 			dataType: 'json',
 			beforeSend: function(){
-				$("#display_list").html('<img src="http://localhost/admin.nepalreads.com/assets/images/loading.gif" height="150px" width="150px">');
+				$("#display_list").html('<img src="http://admin.nepalreads.com/assets/images/loading.gif" height="150px" width="150px">');
 			},
 			success: function(response){
 				$("#display_list").html('');
