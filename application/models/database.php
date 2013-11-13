@@ -166,6 +166,36 @@ class Database extends CI_Model{
 		$all = array($output, $book_details, $image_details, $category);
 		return $all;
 	}
+
+	public function quick_search($srch_txt, $store_id){
+		$store = array();
+		$books = array();
+		$images = array();
+		$store_details = $this->db->query("SELECT * FROM `shopstock` WHERE store='$store_id'");
+		$store_details = $store_details->result();
+
+		$book_details = $this->db->query("SELECT * FROM `books` WHERE book_name LIKE '%$srch_txt%'");
+		$book_details = $book_details->result();
+		$x=0;
+		for($i=0;$i<sizeof($store_details);$i++){
+			$book_id = $store_details[$i]->book_id;
+
+			for($j=0;$j<sizeof($book_details);$j++){
+				if($book_id==$book_details[$j]->book_id){
+					$books[$x] = get_object_vars($book_details[$j]);
+					$store[$x] = get_object_vars($store_details[$i]);
+
+					$img_id = $book_details[$j]->image_id;
+					$image_details = $this->db->query("SELECT * FROM `images` WHERE image_id='$img_id'");
+					$image_details = $image_details->result();
+					$images[$x] = get_object_vars($image_details[0]);
+					$x++;
+				}	
+			}
+		}
+		$all = array($store, $books, $images);
+		return $all;
+	}
 }
 
 ?>

@@ -1,5 +1,5 @@
 
-<?php 
+<?php
     include("header-dash.php");
 ?>
 
@@ -17,7 +17,7 @@
                 <!-- start:section2 -->
                 <div class="section2  span9">
                     <div class="page-header">
-                  <h2>All Books</h2>
+                  <h2>Search for: <?php echo $srch_txt;?></h2>
                 </div>
                 <div class="row-fluid sortby">
                   Sort By:
@@ -29,7 +29,86 @@
                           </select>
                     <hr  />
                 </div>
-               <div id="display_list"></div>
+               <div id="search_list">
+                  <?php
+                    
+                    $sz = sizeof($result[0]);
+                    if($sz==0){
+          
+                    }else{
+                      $sz = $sz-1;
+                    }
+                    $row = $sz/4;
+                    $counter = 0;
+                    $i = 0;
+                    $j=0;
+                    for($x=0;$x<=$row;$x++){
+                        
+                    ?>
+                      <div class="row-fluid">
+                        <ul class="thumbnails">
+                        <?php 
+                          $size = sizeof($result[0]);
+                          
+                          if($result[0] == array()){
+                            echo 'No Books Available.';
+                          }else{
+                            while($i<$size){
+                            $j++;
+                            $counter++;
+                            $img = $result[2][$i]['path'];
+                
+                            $alt = $result[2][$i]['alt'];
+                          ?>
+                      
+                          <li class="span3">
+                            <div class="thumbnail">
+                              <img src="<?php echo $img;?>" alt="<?php echo $alt;?>">
+                              <div class="caption">
+                                <h3><?php echo $result[1][$i]['book_name'];?><!--<small>Pictures from another time</small>--></h3>
+                                <p>By: <a href=""><?php echo $result[1][$i]['author'];?></a> <br /></p>
+                                <p>Fourth Edition</p>
+                                <!--<span class="rating">
+                                    <span class="star"></span>
+                                    <span class="star"></span>
+                                    <span class="star"></span>
+                                    <span class="star"></span>
+                                    <span class="star"></span>
+                                  </span>-->
+                                <p><a href="">Reviews</a>(123)</p>
+                                <p class="price">Price: <?php echo $result[0][$i]['price'];?></p>
+                              </div>
+                              <div class="widget-footer">
+                                <p>
+
+                                  <input type="hidden" id="book_id<?php echo $j?>" value="<?php echo $result[0][$i]['book_id'];?>">
+                                  <input type="hidden" id="stock_id<?php echo $j?>" value="<?php echo $result[0][$i]['stock_id'];?>">
+                                  <input type="hidden" id="store_id<?php echo $j?>" value="<?php echo $result[0][$i]['store'];?>">
+                                  <a href="javascript:void(0)" class="thumb-btn" id="get_details" onClick="get_details(<?php echo $j?>);">Details</a>
+                                  <a href="javascript:void(0)" class="thumb-btn" id="del_stock" onClick="del_stock(<?php echo $j?>);">Delete</a>
+                                  <a href="javascript:void(0)" class="thumb-btn" id="update_stock" onClick="update_stock(<?php echo $j?>);">Update</a> 
+                                </p>
+                              </div>
+                            </div>
+                          </li>
+                          <?php
+                            $i++; 
+                            if($counter==4){
+                              $counter=0;
+                              break;
+                            }
+          
+                          }
+                        }
+                        ?>
+                      </ul>
+                    </div>
+              
+                    <?php
+                      }
+                    ?>
+
+                  </div>
                <div style="clear:both;"></div>
                
                 <!--<div class="pagination pagination-centered">
@@ -72,12 +151,15 @@
                     <!-- Start: FOOTER -->
     
     <!-- End: FOOTER -->
-<input type="hidden" id="jsonarray">
+
+<input type="hidden" id="txt" value="<?php echo $srch_txt;?>">
+<input type="hidden" id="page_name" value="search">
+<input type="hidden" id="jsonarray" />
 <a data-toggle="modal" href="#details" id="det" style="display:none;" class="thumb-btn">Details</a>
 <a data-toggle="modal" href="#delete" id="del" style="display:none;" class="thumb-btn">Delete</a>
 <a data-toggle="modal" href="#update" id="updt" style="display:none;" class="thumb-btn">Update</a>
 <a data-toggle="modal" href="#success_event" id="success_display" style="display:none;" class="thumb-btn">Success Event</a>
-<a data-toggle="modal" href="#loading" id="load" style="display:none;" class="thumb-btn">Details</a>
+<a data-toggle="modal" href="#loading" id="load_page" style="display:none;" class="thumb-btn">Details</a>
 
 
 <!-- moddal for details -->
@@ -185,7 +267,7 @@
          <p>this is test</p>
         </div>
         <div class="modal-footer">
-          <button type="button" id="success_button" class="btn btn-default" onClick="success_final('mybook');" data-dismiss="modal" >OK</button>
+          <button type="button" id="success_button" class="btn btn-default" onClick="success_final('search');" data-dismiss="modal" >OK</button>
           
         </div>
       </div>
@@ -209,3 +291,6 @@
       </div>
     </div>
   </div>  <!-- END:moddal for delete/update success -->
+<?php
+include("footer-dash.php");
+?>

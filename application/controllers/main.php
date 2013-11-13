@@ -351,5 +351,34 @@ class Main extends CI_Controller {
 		$data['title'] = 'Message | Nepal Reads';
 		$this->load->view('messages', $data);	
 	}
+
+	public function quick_search(){
+		if($this->input->post('search')==false){
+			$this->index();
+		}else{
+			$srch_txt = $this->input->post('srch_txt');
+			
+			$store_id = $this->session->userdata['profile_id'];
+
+			$data['result'] = $this->database->quick_search($srch_txt, $store_id);
+			$data['title'] = 'Search Result | Nepal Reads';
+			$data['srch_txt'] = $srch_txt;
+			$this->load->view('search', $data);
+		}
+	}
+
+	public function search_page(){
+		if(!isset($_POST['srch_txt'])){
+			$this->index();
+		}else{
+			
+			$srch_txt = $this->input->post('srch_txt');
+			
+			$store_id = $this->session->userdata['profile_id'];
+
+			$search_result = $this->database->quick_search($srch_txt, $store_id);
+			print_r(json_encode($search_result));exit();
+		}
+	}
 	
 }

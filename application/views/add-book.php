@@ -127,7 +127,7 @@
       <!-- End: container -->
     </div>
     <a data-toggle="modal" href="#msgsnd" id="msg" style="display:none;" class="thumb-btn">Details</a>
-    <a data-toggle="modal" href="#loading" id="load" style="display:none;" class="thumb-btn">Details</a>
+    <a data-toggle="modal" href="#loading" id="load_add" style="display:none;" class="thumb-btn">Details</a>
 <!-- <a data-toggle="modal" href="#details" class="btn btn-primary">Launch modal</a> -->
   <div class="modal fade" id="msgsnd" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog">

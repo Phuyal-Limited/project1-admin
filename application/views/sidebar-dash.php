@@ -1,6 +1,7 @@
 <aside id="sidebar" class="column">
-		<form class="quick_search">
-			<input type="text"  placeholder="Quick Search">
+		<form method="post" action="quick_search" class="quick_search">
+			<input type="text" name="srch_txt" placeholder="Quick Search">
+			<input type="submit" name="search" id = 'search' value="Search" class="btn btn-small search-btn" />
 		</form>
 		<hr/>
         <h3><a href="dashboard">Dashboard</a></h3>
