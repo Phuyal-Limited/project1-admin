@@ -27,7 +27,7 @@ function book_table(){
         	success: function( response ) 
         	{ 
 				$("#success_msg_button").click();
-				alert(response);
+				//alert(response);
 				//var r = response.informations.length;
 				//var lth = response.length;
 				var display = '';
