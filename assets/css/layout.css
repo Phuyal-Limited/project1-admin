@@ -652,6 +652,20 @@ filter: alpha(opacity=70);
 .details-body p{
 	font-size: 15px;
 	border-bottom: 1px solid rgb(172, 172, 172);
-padding-bottom: 10px;
-padding-top: 10px;
+	padding-bottom: 10px;
+	padding-top: 10px;
+}
+
+
+.category-add>.btn-group{
+	padding-left: 3% !important;
+}
+
+.category-add button{
+	width: 97% !important;
+}
+
+.category-add ul{
+	width: 94% !important;
+	margin-left: 3% !important;
 }
