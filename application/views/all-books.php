@@ -133,7 +133,7 @@
         <div class="modal-body">
           <form action="" id="update_form" method="post">
               <legend>Kara Walker</legend>
-              <label>Price</label>
+              <label>Price *</label>
               <input type="text" id="price" name="price">
               
               <span class="help-block"></span>
@@ -153,7 +153,7 @@
               
               <span class="help-block"></span>
               
-              <label>Stock Quantity</label>
+              <label>Stock Quantity *</label>
               <input type="text" id="qty" name="qty">
               
               <span class="help-block"></span>

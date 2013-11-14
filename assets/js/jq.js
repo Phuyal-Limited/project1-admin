@@ -91,7 +91,7 @@ $("#isbn10").keyup(function(){
 					$("#language").val(response[0].language);
 					
 					$("#weight").val(response[0].weight);
-					$("#category_id").val(response[0].category_id);
+					$("#all_category").val(response[0].category_id);
 					
 					$("#description").text(response[0].description);
 					$("#image").html(response[1].path);
@@ -172,7 +172,7 @@ $("#isbn13").keyup(function(){
 					$("#language").val(response[0].language);
 					
 					$("#weight").val(response[0].weight);
-					$("#category_id").val(response[0].category_id);
+					$("#all_category").val(response[0].category_id);
 					
 					$("#isbn_check").val('1');
 					
@@ -203,33 +203,20 @@ $("#isbn13").keyup(function(){
 	
 });
 
+$("#category_id").change(function(){
+	var category_id = $("#category_id").val();
+	$("#all_category").val(category_id);
+});
 
 //publish book
 $("#submit").click(function(event) {
-	var isbn10 = $("#isbn10").val();
-	var isbn13 = $("#isbn13").val();
+	
 	var isbn10att = $('#isbn10').is('[disabled=disabled]')
 	var isbn13att = $('#isbn13').is('[disabled=disabled]')
 
 	$("#publish :input").attr('disabled', false);
 	$("#description").text("");
-	var category_id = $("#category_id").val();
 	
-	if(isbn10.length != 10){
-		$("#msg").click();	
-        $("#success_msg p").html('ISBN10 Not of 10 Digits.');
-		return false;
-	}
-	if(isbn13.length != 13){
-		$("#msg").click();	
-        $("#success_msg p").html('ISBN13 Not of 13 Digits.');
-		return false;
-	}
-	if(category_id == 'Please Choose...'){
-		$("#msg").click();	
-        $("#success_msg p").html('Category Not Selected.');
-		return false;
-	}
 	
 	var oData = new FormData(document.forms.namedItem("publish"));
 	
@@ -358,6 +345,51 @@ $("#update_details").click(function(){
 	var delivery_cost_outof_city = $('#delivery_cost_outof_city').val();
 	var store_ref = $('#store_ref').val();
 	var qty = $('#qty').val();
+	//update validation
+	if(price == '' || price == 0){
+		if($("#page_name").val()=='search'){
+        	$("#load_page").click();
+        }else{
+        	$("#load").click();
+        }
+        
+        $("#success_load p").html('Price Field Empty.');
+		return false;
+	}
+	var filter=/^[0-9 .]+$/;
+	if(!price.match(filter))
+	{
+		if($("#page_name").val()=='search'){
+        	$("#load_page").click();
+        }else{
+        	$("#load").click();
+        }
+        
+        $("#success_load p").html('Numbers with Decimal Allowed in Price Field.');
+		return false;
+	}
+	if(qty == '' || qty==0){
+		if($("#page_name").val()=='search'){
+        	$("#load_page").click();
+        }else{
+        	$("#load").click();
+        }
+        
+        $("#success_load p").html('Quantity Field Empty.');
+		return false;
+	}
+	var filter=/^[0-9]+$/;
+	if(!price.match(filter))
+	{
+		if($("#page_name").val()=='search'){
+        	$("#load_page").click();
+        }else{
+        	$("#load").click();
+        }
+        
+        $("#success_load p").html('Only Numbers Allowed in Quantity Field.');
+		return false;
+	}
 	
 	$("#cancel_update").click();
 	$.ajax({ 
@@ -560,5 +592,96 @@ function success_final(page_name){
 
 		search_page(srch_txt);
 	}
+}
+
+function form_validate(){
+	var isbn10 = $("#isbn10").val();
+	var isbn13 = $("#isbn13").val();
+	var category_id = $("#all_category").val();
+	
+	var book_name = $("#book_name").val();
+	var author = $("#author").val();
+	var publisher = $("#publisher").val();
+	var published_date = $("#published_date").val();
+	var language = $("#language").val();
+	var price = $("#price").val();
+	var qty = $("#qty").val();
+	var description = $("#description").val();
+
+	if(isbn10.length != 10){
+		$("#msg").click();	
+        $("#success_msg p").html('ISBN10 Not of 10 Digits.');
+		return false;
+	}
+	if(isbn13.length != 13){
+		$("#msg").click();	
+        $("#success_msg p").html('ISBN13 Not of 13 Digits.');
+		return false;
+	}
+	
+	if(book_name == ''){
+		$("#msg").click();	
+        $("#success_msg p").html('Book Title Field Empty.');
+		return false;
+	}
+	if(author == ''){
+		$("#msg").click();	
+        $("#success_msg p").html('Author Field Empty.');
+		return false;
+	}
+	if(publisher == ''){
+		$("#msg").click();	
+        $("#success_msg p").html('Publisher Field Empty.');
+		return false;
+	}
+	if(published_date == ''){
+		$("#msg").click();	
+        $("#success_msg p").html('Year of Publication Field Empty.');
+		return false;
+	}
+	if(language == ''){
+		$("#msg").click();	
+        $("#success_msg p").html('Language Field Empty.');
+		return false;
+	}
+	if(price == ''){
+		$("#msg").click();	
+        $("#success_msg p").html('Price Field Empty.');
+		return false;
+	}
+	var filter=/^[0-9 .]+$/;
+	if(!price.match(filter))
+	{
+		$("#msg").click();	
+        $("#success_msg p").html('Numbers with Decimal Allowed in Price Field.');
+		return false;
+	}
+	if(category_id == ''){
+		
+		$("#msg").click();	
+        $("#success_msg p").html('Category Not Selected.');
+		return false;
+	}
+
+	if(qty == ''){
+		$("#msg").click();	
+        $("#success_msg p").html('Quantity Field Empty.');
+		return false;
+	}
+	var filter=/^[0-9]+$/;
+	if(!qty.match(filter))
+	{
+		$("#msg").click();	
+        $("#success_msg p").html('Only Numbers Allowed in Quantity Field.');
+		return false;
+	}
+  	
+	if(description == ''){
+		$("#msg").click();	
+        $("#success_msg p").html('Description Field Empty.');
+		return false;
+	}
+	$("#submit").click();
+
 }
 

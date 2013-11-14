@@ -99,7 +99,7 @@ class Database extends CI_Model{
 		$image_id = $book_details[0]->image_id;
 		
 		$category = $book_details[0]->category_id;
-		$cat_array = explode(', ', $category);
+		$cat_array = explode(',', $category);
 		for($i=0;$i<sizeof($cat_array);$i++){
 			$cat_id = $cat_array[$i];
 			$category_details = $this->db->query("SELECT * FROM `category` WHERE category_id ='$cat_id'");
@@ -146,7 +146,7 @@ class Database extends CI_Model{
 		$book_details = get_object_vars($book_details[0]);
 		
 		$category = $book_details['category_id'];
-		$category = explode(', ', $category);
+		$category = explode(',', $category);
 		$cat = array();
 		for($i=0;$i<sizeof($category);$i++){
 			$cat_id = $category[$i];

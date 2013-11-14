@@ -102,6 +102,7 @@
                           <textarea name="description" id="description" rows="12"></textarea>
                         </fieldset>
                         <input type="hidden" name="book_id" id="book_id" >
+                        <input type="hidden" name="all_category" id="all_category" >
                         <input type="hidden" name="isbn_check" id="isbn_check" value="0" />
                        </form>
                         </div>
@@ -111,7 +112,8 @@
                             <option>Draft</option>
                             <option>Published</option>
                           </select>
-                          <input type="submit" id="submit" value="Publish" class="alt_btn" />
+                          <input type="button" onClick="form_validate();" id="validate_check" value="Publish" class="alt_btn" />
+                          <input style="display:none;" type="submit" id="submit" value="Publish" class="alt_btn" />
                           <input type="submit" value="Reset" id="reset" />
                         </div>
                       </footer>

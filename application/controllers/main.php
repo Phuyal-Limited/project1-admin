@@ -222,7 +222,7 @@ class Main extends CI_Controller {
 						'isbn13' => $this->input->post('isbn13'),
 						'author' => $this->input->post('author'),
 						'description' => $this->input->post('description'),
-						'category_id' => $this->input->post('category_id'),
+						'category_id' => $this->input->post('all_category'),
 						'publisher' => $this->input->post('publisher'),
 						'image_id' => $img_id,
 						'language' => $this->input->post('language'),
@@ -336,8 +336,21 @@ class Main extends CI_Controller {
 			$stock_id = $_POST['stock_id'];
 			$store_id = $_POST['store_id'];
 			$price = $_POST['price'];
+			
 			$delivery_cost_within_city = $_POST['delivery_cost_within_city'];
 			$delivery_cost_outof_city = $_POST['delivery_cost_outof_city'];
+			$delivery_cost = $this->database->bookshop($store_id);
+					
+			if($delivery_cost_within_city == ''){
+				$delivery_cost_within_city = $delivery_cost[0]->delivery_cost_within_city;
+				
+			}
+			if($delivery_cost_outof_city == ''){
+				$delivery_cost_outof_city = $delivery_cost[0]->delivery_cost_outof_city;
+					
+			}
+
+			
 			$store_ref = $_POST['store_ref'];
 			$qty = $_POST['qty'];
 			
