@@ -15,6 +15,7 @@ if(!isset($this->session->userdata['user_id']) && !isset($this->session->userdat
     <!-- Bootstrap -->
     <link href="<?php echo base_url('assets/css/bootstrap.min.css');?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/css/bootstrap.css');?>" rel="stylesheet">
+    <link href="<?php echo base_url('assets/css/bootstrap-multiselect.css');?>" rel="stylesheet">
     <!-- Bootstrap responsive -->
     <link href="<?php echo base_url('assets/css/bootstrap-responsive.min.css');?>" rel="stylesheet">
     <!-- Bootbusiness theme -->
