@@ -53,8 +53,8 @@ function book_table(){
 					display +=	'<li class="span3">'+
 	                      '<div class="thumbnail">'+
 	                        '<img src="'+response[2][y].path+'" alt="'+response[2][y].alt+'" style="height:150px; width:150px;">'+
-	                        '<div class="caption">'+
-	                              '<h3>'+response[1][y].book_name+' <small>Pictures from another time</small></h3>'+
+	                        '<div class="caption" style="height:175px;">'+
+	                              '<h3 style="font-size:13px;">'+response[1][y].book_name+'</h3>'+
 	                              '<p>By:<a href="">'+response[1][y].author+'</a> <br /></p>'+
 	                              '<p>Fourth Edition</p>'+
 	                              '<p>rating ****</p>'+
@@ -143,8 +143,8 @@ function search_page(srch_txt){
 					display +=	'<li class="span3">'+
 	                      '<div class="thumbnail">'+
 	                        '<img src="'+response[2][y].path+'" alt="'+response[2][y].alt+'" style="height:150px; width:150px;">'+
-	                        '<div class="caption">'+
-	                              '<h3>'+response[1][y].book_name+' <small>Pictures from another time</small></h3>'+
+	                        '<div class="caption" style="height:175px;">'+
+	                              '<h3 style="font-size:13px;">'+response[1][y].book_name+' </h3>'+
 	                              '<p>By:<a href="">'+response[1][y].author+'</a> <br /></p>'+
 	                              '<p>Fourth Edition</p>'+
 	                              '<p>rating ****</p>'+

@@ -36,7 +36,7 @@ if(!isset($this->session->userdata['user_id']) && !isset($this->session->userdat
               <a href="dashboard"><img src="<?php echo base_url('assets/images/logo.png');?>"></a>
             </div>
             <div class="span2" >
-              <div class="btn_view_site"><a href="index.php">View Site</a></div>
+              <div class="btn_view_site"><a href="http://nepalreads.com">View Site</a></div>
             </div>
         </div>
        </div>
@@ -47,7 +47,7 @@ if(!isset($this->session->userdata['user_id']) && !isset($this->session->userdat
             <div class="span3" >
                 <div class="user">
                   <p><?php echo $category[1][0]->name;?> (<a href="#">3 Messages</a>)</p>
-                  <a class="logout_user" href="#" title="Logout">Logout</a>
+                  <a class="logout_user" href="logout" title="Logout">Logout</a>
                 </div>
             </div>
             <div class="span9" >

@@ -355,6 +355,7 @@ $("#update_details").click(function(){
 	if(!price.match(filter))
 	{
 		$("#price_validate").show();
+
 		return false;
 	}
 	if(qty == '' || qty==0){
@@ -393,6 +394,8 @@ $("#update_details").click(function(){
         },		 
         success: function( data ) 
         { 
+        	$("#price_validate").hide();
+        	$("#qty_validate").hide();
         	$("#success_msg_button").click();
         	
 			$('#success_title').text('');
