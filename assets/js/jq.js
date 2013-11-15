@@ -23,15 +23,15 @@ $("#submit-button").click(function () {
 				pass: pass 
 			},
 			beforeSend: function(){
-				$("#msg").html('<img src="http://localhost/admin.nepalreads.com/assets/images/loading.gif" height="150px" width="150px">');
+				$("#msg").html('<img src="http://admin.nepalreads.com/assets/images/loading.gif" height="150px" width="150px">');
 			},
 			success: function(response){
 				$("#msg").html('');
-			if(response==='successful'){
+				if(response==='successful'){
 					window.location.replace("dashboard");
-			}else{
+				}else{
 					$("#msg").text(response);
-			}
+				}
 		},
 			
 	});
@@ -65,7 +65,7 @@ $("#isbn10").keyup(function(){
 			beforeSend: function(){
         		$("#load_add").click();
         		$("#success_msg_button").hide();
-        		$("#success_load p").html('<img src="http://localhost/admin.nepalreads.com/assets/images/loading.gif" height="150px" width="150px">');
+        		$("#success_load p").html('<img src="http://admin.nepalreads.com/assets/images/loading.gif" height="150px" width="150px">');
        		},
 			success: function(response){
 				$("#success_msg_button").click();
@@ -147,7 +147,7 @@ $("#isbn13").keyup(function(){
 			},beforeSend: function(){
         		$("#load_add").click();
         		$("#success_msg_button").hide();
-        		$("#success_load p").html('<img src="http://localhost/admin.nepalreads.com/assets/images/loading.gif" height="150px" width="150px">');
+        		$("#success_load p").html('<img src="http://admin.nepalreads.com/assets/images/loading.gif" height="150px" width="150px">');
        		},
 			success: function(response){
 				$("#success_msg_button").click();
@@ -230,7 +230,7 @@ $("#submit").click(function(event) {
         	
         	$("#load_add").click();
         	$("#success_msg_button").hide();
-        	$("#success_load p").html('<img src="http://localhost/admin.nepalreads.com/assets/images/loading.gif" height="150px" width="150px"><br />Loading');
+        	$("#success_load p").html('<img src="http://admin.nepalreads.com/assets/images/loading.gif" height="150px" width="150px"><br />Loading');
         },
         success: function( data ) 
         { 
@@ -316,7 +316,7 @@ $("#del_item").click(function(){
         		$("#load").click();
         	}
         	$("#success_msg_button").hide();
-        	$("#success_load p").html('<img src="http://localhost/admin.nepalreads.com/assets/images/loading.gif" height="150px" width="150px"><br />Loading');
+        	$("#success_load p").html('<img src="http://admin.nepalreads.com/assets/images/loading.gif" height="150px" width="150px"><br />Loading');
         },	 
         success: function( data ) 
         { 
@@ -411,7 +411,7 @@ $("#update_details").click(function(){
         		$("#load").click();
         	}
         	$("#success_msg_button").hide();
-        	$("#success_load p").html('<img src="http://localhost/admin.nepalreads.com/assets/images/loading.gif" height="150px" width="150px"><br />Loading');
+        	$("#success_load p").html('<img src="http://admin.nepalreads.com/assets/images/loading.gif" height="150px" width="150px"><br />Loading');
         },		 
         success: function( data ) 
         { 
@@ -475,7 +475,7 @@ function get_details(i){
         		$("#load").click();
         	}
         	$("#success_msg_button").hide();
-        	$("#success_load p").html('<img src="http://localhost/admin.nepalreads.com/assets/images/loading.gif" height="150px" width="150px"><br />Loading');
+        	$("#success_load p").html('<img src="http://admin.nepalreads.com/assets/images/loading.gif" height="150px" width="150px"><br />Loading');
         }, 
         success: function( data ) 
         { 
@@ -529,7 +529,7 @@ function del_stock(i){
         		$("#load").click();
         	}
         	$("#success_msg_button").hide();
-        	$("#success_load p").html('<img src="http://localhost/admin.nepalreads.com/assets/images/loading.gif" height="150px" width="150px"><br />Loading');
+        	$("#success_load p").html('<img src="http://admin.nepalreads.com/assets/images/loading.gif" height="150px" width="150px"><br />Loading');
         },
         success: function( data ) 
         { 
@@ -562,7 +562,7 @@ function update_stock(i){
         		$("#load").click();
         	}
         	$("#success_msg_button").hide();
-        	$("#success_load p").html('<img src="http://localhost/admin.nepalreads.com/assets/images/loading.gif" height="150px" width="150px"><br />Loading');
+        	$("#success_load p").html('<img src="http://admin.nepalreads.com/assets/images/loading.gif" height="150px" width="150px"><br />Loading');
         },
         success: function( data ) 
         { 
