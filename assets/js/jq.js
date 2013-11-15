@@ -347,47 +347,25 @@ $("#update_details").click(function(){
 	var qty = $('#qty').val();
 	//update validation
 	if(price == '' || price == 0){
-		if($("#page_name").val()=='search'){
-        	$("#load_page").click();
-        }else{
-        	$("#load").click();
-        }
-        
-        $("#success_load p").html('Price Field Empty.');
+		$("#price_validate").show();
+		$("#price_validate p").html('Please Fill');
 		return false;
 	}
 	var filter=/^[0-9 .]+$/;
 	if(!price.match(filter))
 	{
-		if($("#page_name").val()=='search'){
-        	$("#load_page").click();
-        }else{
-        	$("#load").click();
-        }
-        
-        $("#success_load p").html('Numbers with Decimal Allowed in Price Field.');
+		$("#price_validate").show();
 		return false;
 	}
 	if(qty == '' || qty==0){
-		if($("#page_name").val()=='search'){
-        	$("#load_page").click();
-        }else{
-        	$("#load").click();
-        }
-        
-        $("#success_load p").html('Quantity Field Empty.');
+		$("#qty_validate").show();
+		$("#qty_validate p").html('Please Fill');
 		return false;
 	}
 	var filter=/^[0-9]+$/;
 	if(!price.match(filter))
 	{
-		if($("#page_name").val()=='search'){
-        	$("#load_page").click();
-        }else{
-        	$("#load").click();
-        }
-        
-        $("#success_load p").html('Only Numbers Allowed in Quantity Field.');
+		$("#qty_validate").show();
 		return false;
 	}
 	

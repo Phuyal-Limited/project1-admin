@@ -217,7 +217,9 @@
               <legend>Kara Walker</legend>
               <label>Price *</label>
               <input type="text" id="price" name="price">
-              
+              <div class="confirm-msg" id="price_validate" style="display:none;">
+                          <p>  Invalid!</p>
+              </div>
               <span class="help-block"></span>
               
               <label>Delivery Cost Within City</label>
@@ -237,7 +239,9 @@
               
               <label>Stock Quantity *</label>
               <input type="text" id="qty" name="qty">
-              
+              <div class="confirm-msg" id="qty_validate" style="display:none;">
+                          <p>  Invalid!</p>
+              </div>
               <span class="help-block"></span>
               
                 <input type="hidden" name="book_id" id="updt_book_id" />
