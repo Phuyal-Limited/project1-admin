@@ -348,7 +348,7 @@ $("#update_details").click(function(){
 	//update validation
 	if(price == '' || price == 0){
 		$("#price_validate").show();
-		$("#price_validate p").html('Please Fill');
+		$("#price_validate").html('Please Fill');
 		return false;
 	}
 	var filter=/^[0-9 .]+$/;
@@ -359,7 +359,7 @@ $("#update_details").click(function(){
 	}
 	if(qty == '' || qty==0){
 		$("#qty_validate").show();
-		$("#qty_validate p").html('Please Fill');
+		$("#qty_validate").html('Please Fill');
 		return false;
 	}
 	var filter=/^[0-9]+$/;
