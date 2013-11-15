@@ -363,7 +363,7 @@ $("#update_details").click(function(){
 		return false;
 	}
 	var filter=/^[0-9]+$/;
-	if(!price.match(filter))
+	if(!qty.match(filter))
 	{
 		$("#qty_validate").show();
 		return false;
