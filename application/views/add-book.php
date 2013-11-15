@@ -64,9 +64,9 @@
                           <div class="category-add">
                             <select name="category_id" id="category_id" style="width:92% !important;" class="multiselect" multiple="multiple">
                             <?php 
-                              for($i=0;$i<sizeof($category);$i++){
+                              for($i=0;$i<sizeof($category[0]);$i++){
                             ?>
-                                            <option value="<?php echo $category[$i]->category_id;?>"><?php echo $category[$i]->name;?></option>
+                                            <option value="<?php echo $category[0][$i]->category_id;?>"><?php echo $category[0][$i]->name;?></option>
                                             <?php   
                               }
                             ?>

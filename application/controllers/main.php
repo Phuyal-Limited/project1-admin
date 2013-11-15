@@ -13,6 +13,7 @@ class Main extends CI_Controller {
 	{
 		$data['title'] = 'Add Book | Nepal Reads';
 		$data['category'] = $this->database->category();
+
 		$this->load->view('add-book', $data);	
 	}
 	public function confirm()
@@ -35,11 +36,11 @@ class Main extends CI_Controller {
 		//check for session
 		if(!isset($this->session->userdata['user_id']) && !isset($this->session->userdata['access_right']) && !isset($this->session->userdata['profile_id'])){
 	
-			$this->index();
+			redirect('index');
 		}else{
 		
 			$data['title'] = 'Dashboard | Nepal Reads';
-			
+			$data['category'] = $this->database->category();
 			$this->load->view('dashboard', $data);
 		}
 	}
@@ -47,7 +48,7 @@ class Main extends CI_Controller {
 	public function search_book(){
 		//check if isnb posted by ajax or not
 		if(!isset($_POST['isbn'])){
-			$this->dashboard();
+			redirect('dashboard');
 		}else{
 			$isbn = $_POST['isbn'];
 			
@@ -72,7 +73,7 @@ class Main extends CI_Controller {
 	{
 		//check if submit button clicked or not
 		if (!isset($_POST['name'])){
-			$this->index();
+			redirect('index');
 		}else{
 			$pass = $_POST['pass'];
 			$pass = sha1($pass);
@@ -106,14 +107,14 @@ class Main extends CI_Controller {
 	public function logout(){
 		$this->session->sess_destroy();
 
-		$this->index();
+		redirect('index');
 	}
 	
 	public function publish(){
 		//check if data from ajax submitted or not
 		
 		if (!isset($_POST['isbn10'])){
-			$this->index();
+			redirect('index');
 		}else{
 			
 			$book_id = $this->input->post('book_id');
@@ -295,7 +296,7 @@ class Main extends CI_Controller {
 		//print_r($_POST['book']);exit();
 		$data['title'] = 'My Books | Nepal Reads';
 		
-		
+		$data['category'] = $this->database->category();
 		$this->load->view('all-books', $data);
 		$this->load->view('footer-dash');
 	}
@@ -304,7 +305,7 @@ class Main extends CI_Controller {
 	
 	public function get_details(){
 		if(!isset($_POST['book_id'])){
-			$this->index();
+			redirect('index');
 		}else{
 			$book_id = $_POST['book_id'];
 			$stock_id = $_POST['stock_id'];
@@ -316,7 +317,7 @@ class Main extends CI_Controller {
 	
 	public function delete_item(){
 		if(!isset($_POST['book_id'])){
-			$this->index();
+			redirect('index');
 		}else{
 			$book_id = $_POST['book_id'];
 			$stock_id = $_POST['stock_id'];
@@ -328,7 +329,7 @@ class Main extends CI_Controller {
 	
 	public function update_item(){
 		if(!isset($_POST['book_id'])){
-			$this->index();
+			redirect('index');
 		}else{
 			
 			$book_id = $_POST['book_id'];
@@ -362,17 +363,18 @@ class Main extends CI_Controller {
 	public function message()
 	{
 		$data['title'] = 'Message | Nepal Reads';
+		$data['category'] = $this->database->category();
 		$this->load->view('messages', $data);	
 	}
 
 	public function quick_search(){
 		if($this->input->post('search')==false){
-			$this->index();
+			redirect('index');
 		}else{
 			$srch_txt = $this->input->post('srch_txt');
 			
 			$store_id = $this->session->userdata['profile_id'];
-
+			$data['category'] = $this->database->category();
 			$data['result'] = $this->database->quick_search($srch_txt, $store_id);
 			$data['title'] = 'Search Result | Nepal Reads';
 			$data['srch_txt'] = $srch_txt;
@@ -382,7 +384,7 @@ class Main extends CI_Controller {
 
 	public function search_page(){
 		if(!isset($_POST['srch_txt'])){
-			$this->index();
+			redirect('index');
 		}else{
 			
 			$srch_txt = $this->input->post('srch_txt');

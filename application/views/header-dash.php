@@ -46,7 +46,7 @@ if(!isset($this->session->userdata['user_id']) && !isset($this->session->userdat
         <div class="row-fluid">
             <div class="span3" >
                 <div class="user">
-                  <p>Bibek KC (<a href="#">3 Messages</a>)</p>
+                  <p><?php echo $category[1][0]->name;?> (<a href="#">3 Messages</a>)</p>
                   <a class="logout_user" href="#" title="Logout">Logout</a>
                 </div>
             </div>

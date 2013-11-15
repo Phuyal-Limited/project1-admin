@@ -10,7 +10,11 @@ class Database extends CI_Model{
 	
 	public function category(){
 		$output = $this->db->query("SELECT * FROM `category`");
-		return $output->result();	
+		$output = $output->result();
+		$store = $this->db->query("SELECT * FROM `bookshop`");
+		$store = $store->result();
+		$all = array($output, $store);
+		return $all;	
 	}
 	
 	public function search_book($isbn){
