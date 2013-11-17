@@ -23,9 +23,10 @@ $("#submit-button").click(function () {
 				pass: pass 
 			},
 			beforeSend: function(){
-				$("#msg").html('<img src="http://admin.nepalreads.com/assets/images/loading.gif" height="150px" width="150px">');
+				$("#load").html('<img src="http://admin.nepalreads.com/assets/images/loading.gif" height="25px" width="25px">');
 			},
 			success: function(response){
+				$("#load").html('');
 				$("#msg").html('');
 				if(response==='successful'){
 					window.location.replace("dashboard");
@@ -42,6 +43,7 @@ $("#isbn10").keyup(function(){
 	var isbn10 = $("#isbn10").val();
 	var isbn13 = $("#isbn13").val();
 	var isbn_check = $("#isbn_check").val();
+	var lnth = isbncheck(isbn10);
 	if(isbn_check == "0"){
 						//do nothing
 	}else{
@@ -53,7 +55,7 @@ $("#isbn10").keyup(function(){
 			$("#isbn_check").val('0');
 			$("#publish :input").attr('disabled', false);
 	}
-	if(isbn10.length==10){
+	if(lnth==10){
 	$.ajax({
 			url: 'search_book',
 			type: 'POST',
@@ -63,12 +65,11 @@ $("#isbn10").keyup(function(){
 				
 			},
 			beforeSend: function(){
-        		$("#load_add").click();
-        		$("#success_msg_button").hide();
-        		$("#success_load p").html('<img src="http://admin.nepalreads.com/assets/images/loading.gif" height="150px" width="150px">');
+        		
+        		$("#load_isbn10").html('<img src="http://admin.nepalreads.com/assets/images/loading.gif" height="20px" width="20px">');
        		},
 			success: function(response){
-				$("#success_msg_button").click();
+				$("#load_isbn10").html('');
 				if(response.error === '1'){
 					if(isbn_check == "0"){
 						//do nothing
@@ -125,6 +126,7 @@ $("#isbn13").keyup(function(){
 	var isbn13 = $("#isbn13").val();
 	var isbn10 = $("#isbn10").val();
 	var isbn_check = $("#isbn_check").val();
+	var lnth = isbncheck(isbn13);
 	if(isbn_check == "0"){
 		//do nothing				
 	}else{
@@ -136,7 +138,7 @@ $("#isbn13").keyup(function(){
 			$("#isbn_check").val('0');
 			$("#publish :input").attr('disabled', false);
 	}
-	if(isbn13.length==13){
+	if(lnth==13){
 	$.ajax({
 			url: 'search_book',
 			type: 'POST',
@@ -145,11 +147,11 @@ $("#isbn13").keyup(function(){
 				isbn: isbn13,
 				
 			},beforeSend: function(){
-        		$("#load_add").click();
-        		$("#success_msg_button").hide();
-        		$("#success_load p").html('<img src="http://admin.nepalreads.com/assets/images/loading.gif" height="150px" width="150px">');
+        		
+        		$("#load_isbn13").html('<img src="http://admin.nepalreads.com/assets/images/loading.gif" height="20px" width="20px">');
        		},
 			success: function(response){
+				$("#load_isbn13").html('');
 				$("#success_msg_button").click();
 				if(response.error === '1'){
 					if(isbn_check == "0"){
@@ -203,9 +205,11 @@ $("#isbn13").keyup(function(){
 	
 });
 
+//get the category ids and save to a  hidden field
 $("#category_id").change(function(){
 	var category_id = $("#category_id").val();
 	$("#all_category").val(category_id);
+
 });
 
 //publish book
@@ -228,14 +232,12 @@ $("#submit").click(function(event) {
         data: oData, 
         beforeSend: function(){
         	
-        	$("#load_add").click();
-        	$("#success_msg_button").hide();
-        	$("#success_load p").html('<img src="http://admin.nepalreads.com/assets/images/loading.gif" height="150px" width="150px"><br />Loading');
+        	$("#publish_load").html('<img src="http://admin.nepalreads.com/assets/images/loading.gif" height="20px" width="20px">');
         },
         success: function( data ) 
         { 
         	
-        	$("#success_msg_button").click();
+        	$("#publish_load").html('');
         	
         	var response = data.split('/');
         	
@@ -246,8 +248,8 @@ $("#submit").click(function(event) {
 			}
 			if(response[0] =='Book already exists in your store'){
 				
-				$("#msg").click();	
-        		$("#success_msg p").html('Book already exists in your store');
+				$("#msg").show();
+        		$("#msg").html('Book already exists in your store');
 				$("#publish :input").attr('disabled', true);
 				if(isbn10att==false){
 					$("#isbn10").attr('disabled', false);
@@ -264,12 +266,12 @@ $("#submit").click(function(event) {
 
 			}
 			if(response[0] == 'File Size Larger'){
-				$("#msg").click();	
-        		$("#success_msg p").html('File Size Larger.');
+				$("#msg").show();	
+        		$("#msg").html('File Size Larger.');
 			}
 			if(response[0] == 'Invalid File Type'){
-				$("#msg").click();	
-        		$("#success_msg p").html('Invalid File Type.');
+				$("#msg").show();	
+        		$("#msg").html('Invalid File Type.');
 			}
 		
 		/*	else
@@ -288,11 +290,13 @@ $("#reset").click(function(){
 	$("#publish :input").attr('disabled', false);
 	$("#publish")[0].reset();
 	$("#description").text("");
+	$(".btn-group button").html('None selected <b class="caret"></b>');
 	$("#book_id").val('');
 	$("#isn_check").val('0');
 	$('#img_prev').attr('src', "#");
 	$('#img_prev').hide();
 	$('#popup').hide();
+	$("#msg").hide();
 });
 
 
@@ -310,23 +314,21 @@ $("#del_item").click(function(){
 			stock_id: stock_id,
 			store_id: store_id
 		},beforeSend: function(){
-        	if($("#page_name").val()=='search'){
-        		$("#load_page").click();
-        	}else{
-        		$("#load").click();
-        	}
-        	$("#success_msg_button").hide();
-        	$("#success_load p").html('<img src="http://admin.nepalreads.com/assets/images/loading.gif" height="150px" width="150px"><br />Loading');
+        	
+        	$("#success_display").click();
+        	$("#success_msg p").html('<img src="http://admin.nepalreads.com/assets/images/loading.gif" height="100px" width="100px">');
+			$("#success_msg p").css({
+				"margin-left":"35%"
+			});
         },	 
         success: function( data ) 
         { 
-        	$("#success_msg_button").click();
+        	$("#success_msg p").css({
+				"margin-left":"0%"
+			});
+			
         	
-        	$('#success_title').text('');
 			$('#success_msg').html('<h4>Item Deleted Successfully.</h4>');
-			
-			
-			$("#success_display").click();
 			
 		}
    }); 
@@ -359,6 +361,7 @@ $("#update_details").click(function(){
 		return false;
 	}
 	if(qty == '' || qty==0){
+		$("#price_validate").hide();
 		$("#qty_validate").show();
 		$("#qty_validate").html('Please Fill');
 		return false;
@@ -366,6 +369,7 @@ $("#update_details").click(function(){
 	var filter=/^[0-9]+$/;
 	if(!qty.match(filter))
 	{
+		$("#price_validate").hide();
 		$("#qty_validate").show();
 		return false;
 	}
@@ -384,25 +388,19 @@ $("#update_details").click(function(){
 			store_ref: store_ref,
 			qty: qty
 		},beforeSend: function(){
-        	if($("#page_name").val()=='search'){
-        		$("#load_page").click();
-        	}else{
-        		$("#load").click();
-        	}
-        	$("#success_msg_button").hide();
-        	$("#success_load p").html('<img src="http://admin.nepalreads.com/assets/images/loading.gif" height="150px" width="150px"><br />Loading');
+        	$("#success_display").click();
+        	$("#success_msg p").html('<img src="http://admin.nepalreads.com/assets/images/loading.gif" height="100px" width="100px">');
+			$("#success_msg p").css({
+				"margin-left":"35%"
+			});
         },		 
         success: function( data ) 
         { 
-        	$("#price_validate").hide();
-        	$("#qty_validate").hide();
-        	$("#success_msg_button").click();
-        	
-			$('#success_title').text('');
+        	$("#success_msg p").css({
+				"margin-left":"0%"
+			});
 			$('#success_msg').html('<h4>Item Updated Successfully.</h4>');
 			
-			
-			$("#success_display").click();
 			
 		}
    }); 
@@ -450,19 +448,13 @@ function get_details(i){
 			stock_id: stock_id,
 			store_id: store_id
 		},beforeSend: function(){
-        	if($("#page_name").val()=='search'){
-        		$("#load_page").click();
-        	}else{
-        		$("#load").click();
-        	}
-        	$("#success_msg_button").hide();
-        	$("#success_load p").html('<img src="http://admin.nepalreads.com/assets/images/loading.gif" height="150px" width="150px"><br />Loading');
+        	$("#det").click();
+        	
+        	$("#all_details").html('<img src="http://admin.nepalreads.com/assets/images/loading.gif" height="100px" width="100px">');
         }, 
         success: function( data ) 
         { 
-        	$("#success_msg_button").click();
-
-			$('#det_title').text(data[0].book_name);
+        	$('#det_title').text(data[0].book_name);
 			$('#all_details').html('<div><img src="'+data[2].path+'" height="150px" width="150px" /><br/>' +
 			'<h4>Description</h4><hr/>' +
 			'<p>'+data[0].description+'</p>' +
@@ -480,7 +472,7 @@ function get_details(i){
 			'<p>Published Date: '+data[0].published_date+'</p>' +
 			'<div>'
 			);
-			$("#det").click();
+			
 			
 		}
    }); 
@@ -504,19 +496,20 @@ function del_stock(i){
 			store_id: store_id
 		},
 		beforeSend: function(){
-        	if($("#page_name").val()=='search'){
-        		$("#load_page").click();
-        	}else{
-        		$("#load").click();
-        	}
-        	$("#success_msg_button").hide();
-        	$("#success_load p").html('<img src="http://admin.nepalreads.com/assets/images/loading.gif" height="150px" width="150px"><br />Loading');
+        	$("#del").click();
+			$("#delete_msg").html('<img src="http://admin.nepalreads.com/assets/images/loading.gif" height="100px" width="100px">');
+			$("#delete_msg").css({
+				"margin-left":"35%"
+			});
         },
         success: function( data ) 
         { 
-        	$("#success_msg_button").click();
+        	$("#delete_msg").css({
+				"margin-left":"0%"
+			});
+			$("#delete_msg").html("Are you sure you want to delete this book?");
         	$('#del_title').text(data[0].book_name);
-			$("#del").click();
+			
 		}
 	});
 }
@@ -537,25 +530,21 @@ function update_stock(i){
 			stock_id: stock_id,
 			store_id: store_id
 		},beforeSend: function(){
-        	if($("#page_name").val()=='search'){
-        		$("#load_page").click();
-        	}else{
-        		$("#load").click();
-        	}
-        	$("#success_msg_button").hide();
-        	$("#success_load p").html('<img src="http://admin.nepalreads.com/assets/images/loading.gif" height="150px" width="150px"><br />Loading');
+        	$("#updt").click();
+        	
+        	$("#updt_msg").html('<img src="http://admin.nepalreads.com/assets/images/loading.gif" height="100px" width="100px">');
         },
         success: function( data ) 
         { 
-        	$("#success_msg_button").click();
-			
+        	$("#updt_msg").html('');
+			$("#updt_form").show();
 			$('#update_form legend').text(data[0].book_name);
 			$('#price').val(data[1].price);
 			$('#delivery_cost_within_city').val(data[1].delivery_cost_within_city);
 			$('#delivery_cost_outof_city').val(data[1].delivery_cost_outof_city);
 			$('#store_ref').val(data[1].item_no_for_store_ref);
 			$('#qty').val(data[1].stock);
-			$("#updt").click();
+			
 		}
 	});
 	return false;
@@ -588,81 +577,88 @@ function form_validate(){
 	var price = $("#price").val();
 	var qty = $("#qty").val();
 	var description = $("#description").val();
-
-	if(isbn10.length != 10){
-		$("#msg").click();	
-        $("#success_msg p").html('ISBN10 Not of 10 Digits.');
+	var isbn10length = isbncheck(isbn10);
+	var isbn13length = isbncheck(isbn13);
+	if(isbn10length != 10){
+		$("#msg").show();	
+        $("#msg").html('ISBN10 Not of 10 Digits.');
 		return false;
 	}
-	if(isbn13.length != 13){
-		$("#msg").click();	
-        $("#success_msg p").html('ISBN13 Not of 13 Digits.');
+	if(isbn13length != 13){
+		$("#msg").show();	
+        $("#msg").html('ISBN13 Not of 13 Digits.');
 		return false;
 	}
 	
 	if(book_name == ''){
-		$("#msg").click();	
-        $("#success_msg p").html('Book Title Field Empty.');
+		$("#msg").show();	
+        $("#msg").html('Book Title Field Empty.');
 		return false;
 	}
 	if(author == ''){
-		$("#msg").click();	
-        $("#success_msg p").html('Author Field Empty.');
+		$("#msg").show();	
+        $("#msg").html('Author Field Empty.');
 		return false;
 	}
 	if(publisher == ''){
-		$("#msg").click();	
-        $("#success_msg p").html('Publisher Field Empty.');
+		$("#msg").show();	
+        $("#msg").html('Publisher Field Empty.');
 		return false;
 	}
 	if(published_date == ''){
-		$("#msg").click();	
-        $("#success_msg p").html('Year of Publication Field Empty.');
+		$("#msg").show();	
+        $("#msg").html('Year of Publication Field Empty.');
 		return false;
 	}
 	if(language == ''){
-		$("#msg").click();	
-        $("#success_msg p").html('Language Field Empty.');
+		$("#msg").show();	
+        $("#msg").html('Language Field Empty.');
 		return false;
 	}
 	if(price == ''){
-		$("#msg").click();	
-        $("#success_msg p").html('Price Field Empty.');
+		$("#msg").show();	
+        $("#msg").html('Price Field Empty.');
 		return false;
 	}
 	var filter=/^[0-9 .]+$/;
 	if(!price.match(filter))
 	{
-		$("#msg").click();	
-        $("#success_msg p").html('Numbers with Decimal Allowed in Price Field.');
+		$("#msg").show();	
+        $("#msg").html('Numbers with Decimal Allowed in Price Field.');
 		return false;
 	}
 	if(category_id == ''){
 		
-		$("#msg").click();	
-        $("#success_msg p").html('Category Not Selected.');
+		$("#msg").show();	
+        $("#msg").html('Category Not Selected.');
 		return false;
 	}
 
 	if(qty == ''){
-		$("#msg").click();	
-        $("#success_msg p").html('Quantity Field Empty.');
+		$("#msg").show();	
+        $("#msg").html('Quantity Field Empty.');
 		return false;
 	}
 	var filter=/^[0-9]+$/;
 	if(!qty.match(filter))
 	{
-		$("#msg").click();	
-        $("#success_msg p").html('Only Numbers Allowed in Quantity Field.');
+		$("#msg").show();	
+        $("#msg").html('Only Numbers Allowed in Quantity Field.');
 		return false;
 	}
   	
 	if(description == ''){
-		$("#msg").click();	
-        $("#success_msg p").html('Description Field Empty.');
+		$("#msg").show();	
+        $("#msg").html('Description Field Empty.');
 		return false;
 	}
 	$("#submit").click();
 
 }
 
+function isbncheck(isbn13){
+	var isbn = isbn13.split('-');
+	var size = isbn.length;
+	var result = isbn.join('');
+	return result.length;
+}

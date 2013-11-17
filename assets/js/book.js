@@ -11,6 +11,7 @@ $(document).ready(function(){
 function done(){
 		book_table();
 }
+//book list display with ajax
 function book_table(){
 	$("#display_list").html('');
 	
@@ -19,17 +20,20 @@ function book_table(){
 			dataType: 'json',
 			beforeSend: function(){
         	
-        		$("#load").click();
-        		$("#success_msg_button").hide();
-        		$("#success_load p").html('<img src="http://admin.nepalreads.com/assets/images/loading.gif" height="150px" width="150px"><br />Loading');
-        		
+        		$("#display_list").html('<img src="http://admin.nepalreads.com/assets/images/loading.gif" height="100px" width="100px"><br />');
+        		$("#display_list").css({
+					"margin-left": "35%"
+				});
         	}, 
         	success: function( response ) 
         	{ 
-				$("#success_msg_button").click();
+				
+				$("#display_list").html('');
+				$("#display_list").css({
+					"margin-left": "0%"
+				});
 				$("#jsonarray").val(response);
-				//var r = response.informations.length;
-				//var lth = response.length;
+				
 				var display = '';
 				var sz = response[0].length;
 				if(sz==0){
@@ -93,7 +97,8 @@ function book_table(){
 		});
 }
 
-
+//display booklist after search with ajax
+//works search page loads
 function search_page(srch_txt){
 	var txt = srch_txt;
 	$("#search_list").html('');
@@ -108,14 +113,19 @@ function search_page(srch_txt){
 			},
 			beforeSend: function(){
         	
-        		$("#load_page").click();
-        		$("#success_msg_button").hide();
-        		$("#success_load p").html('<img src="http://admin.nepalreads.com/assets/images/loading.gif" height="150px" width="150px"><br />Loading');
         		
+        		$("#search_list").html('<img src="http://admin.nepalreads.com/assets/images/loading.gif" height="100px" width="100px"><br />Loading');
+        		$("#search_list").css({
+					"margin-left":"35%"
+				});
         	}, 
         	success: function( response ) 
         	{ 
-				$("#success_msg_button").click();
+				
+				$("#search_list").css({
+					"margin-left":"0%"
+				});
+				$("#search_list").html('');
 				$("#jsonarray").val(response);
 				
 				//var r = response.informations.length;

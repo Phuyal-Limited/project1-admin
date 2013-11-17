@@ -77,7 +77,7 @@
 <a data-toggle="modal" href="#delete" id="del" style="display:none;" class="thumb-btn">Delete</a>
 <a data-toggle="modal" href="#update" id="updt" style="display:none;" class="thumb-btn">Update</a>
 <a data-toggle="modal" href="#success_event" id="success_display" style="display:none;" class="thumb-btn">Success Event</a>
-<a data-toggle="modal" href="#loading" id="load" style="display:none;" class="thumb-btn">Details</a>
+
 
 
 <!-- moddal for details -->
@@ -87,7 +87,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
-          <h4 class="modal-title" id="det_title">Kara Walker</h4>
+          <h4 class="modal-title" id="det_title"></h4>
         </div>
         <div class="modal-body" id="all_details">
          <p>this is test</p>
@@ -106,13 +106,13 @@
       <div class="modal-content">
         <div class="modal-header">
           <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
-          <h4 class="modal-title" id="del_title">Kara Walker</h4>
+          <h4 class="modal-title" id="del_title"></h4>
         </div>
         <div class="modal-body">
         <input type="hidden" id="del_book_id" />
         <input type="hidden" id="del_stock_id" />
         <input type="hidden" id="del_store_id" />
-          Are you sure you want to delete this book.
+          <p id="delete_msg">Are you sure you want to delete this book?</p>
         </div>
         <div class="modal-footer">
           <button type="button" id="del_item" class="btn btn-default" >Delete</button>
@@ -130,7 +130,8 @@
           <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
           <h4 class="modal-title">Update</h4>
         </div>
-        <div class="modal-body">
+        <div id="updt_msg"></div>
+        <div class="modal-body" style="display:none;" id="updt_form">
           <form action="" id="update_form" method="post">
               <legend>Kara Walker</legend>
               <label>Price *</label>
@@ -184,7 +185,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
-          <h4 class="modal-title" id="success_title">Kara Walker</h4>
+          <h4 class="modal-title" id="success_title"></h4>
         </div>
         <div class="modal-body" id="success_msg">
          <p>this is test</p>
@@ -197,20 +198,4 @@
     </div>
   </div>  <!-- END:moddal for delete/update success -->
     <!-- <a data-toggle="modal" href="#details" class="btn btn-primary">Launch modal</a> -->
-  <div class="modal fade" id="loading" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
-          
-        </div>
-        <div class="modal-body" id="success_load">
-         <p>this is test</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" id="success_msg_button" class="btn btn-default" data-dismiss="modal" >OK</button>
-          
-        </div>
-      </div>
-    </div>
-  </div>  <!-- END:moddal for delete/update success -->
+  

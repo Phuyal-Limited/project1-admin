@@ -48,8 +48,8 @@
                         <p>Price: <?php echo $details[0]['price'];?></p>
                         <p>Delivery Cost within City: <?php echo $details[0]['delivery_cost_within_city'];?></p>
                         <p>Delivery Cost outof City: <?php echo $details[0]['delivery_cost_outof_city'];?></p>
-                        <p>Description:</p>
-                        <p><?php echo $details[1]['description'];?></p>
+                        <p>Description:</br>
+                        <?php echo $details[1]['description'];?></p>
                       </div>
                     </div>
                     <button id="add_new_book" class="btn">+Add New Book</button>                    

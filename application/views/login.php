@@ -29,7 +29,7 @@ if(isset($this->session->userdata['user_id']) && isset($this->session->userdata[
 				<div id="msg"></div>
 
 				<div id="button">
-					<input type="submit" value="Login" id="submit-button">
+					<input type="submit" value="Login" id="submit-button"><span id="load"></span>
 				</div>
 				<div id="forget">
 					<p><a href="#">Forget Password?</a>
