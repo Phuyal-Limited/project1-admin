@@ -43,7 +43,15 @@
                         </fieldset>
                         <fieldset style="width:48%; float:left; margin-right: 3%;">
                           <label>Year Of Publication *</label>
-                          <input type="text" name="published_date" id="published_date" style="width:92%;">
+                          <select name="published_date" id="published_date" style="width:92%">
+                            <?php 
+                              for($x=1910;$x<2014;$x++){
+                            ?>
+                              <option value="<?php echo $x;?>"><?php echo $x;?></option>
+                            <?php   
+                              }
+                            ?>
+                          </select>
                         </fieldset>
                         <fieldset style="width:48%; float:left;">
                           <label>Language *</label>
