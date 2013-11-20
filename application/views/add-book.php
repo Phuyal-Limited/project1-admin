@@ -44,6 +44,7 @@
                         <fieldset style="width:48%; float:left; margin-right: 3%;">
                           <label>Year Of Publication *</label>
                           <select name="published_date" id="published_date" style="width:92%">
+                            <option value="Please Choose..">Please Choose..</option>
                             <?php 
                               for($x=1910;$x<2014;$x++){
                             ?>

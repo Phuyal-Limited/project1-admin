@@ -605,9 +605,9 @@ function form_validate(){
         $("#msg").html('Publisher Field Empty.');
 		return false;
 	}
-	if(published_date == ''){
+	if(published_date == 'Please Choose..'){
 		$("#msg").show();	
-        $("#msg").html('Year of Publication Field Empty.');
+        $("#msg").html('Year of Publication Not Selected.');
 		return false;
 	}
 	if(language == ''){
