@@ -11,6 +11,10 @@ background: #F8F8F8;
 font-size: 12px;
 }
 
+.kale{
+	border: 1px solid;
+}
+
 .logo img{
 	display:block;
 	margin-right: auto;

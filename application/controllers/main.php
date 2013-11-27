@@ -395,5 +395,14 @@ class Main extends CI_Controller {
 			print_r(json_encode($search_result));exit();
 		}
 	}
+
+
+	public function order(){
+		$data['title'] = 'Order | Nepal Reads';
+		$data['category'] = $this->database->category();
+		$store_id = $this->session->userdata['profile_id'];
+		$data['order'] = $this->database->get_order_list($store_id);//print_r($data['order']);exit();
+		$this->load->view('order', $data);
+	}
 	
 }

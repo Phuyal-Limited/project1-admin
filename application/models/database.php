@@ -200,6 +200,100 @@ class Database extends CI_Model{
 		$all = array($store, $books, $images);
 		return $all;
 	}
+
+
+	public function get_order_list($store_id){
+		$book_all = array();
+		$stock_all = array();
+		$order_date = array();
+		$order_all = array();
+		$customer_details = array();
+		$quantity = array();
+		
+
+       $order = $this->db->query("SELECT * FROM `order`");
+
+       $order = $order->result();
+
+       foreach ($order as $eachOrder) {
+
+           $cart_id = $eachOrder->cart_id;
+
+           $customer_id = $eachOrder->customer_id;
+
+           $registered = $eachOrder->registered_customer;
+
+           $cart_details = $this->db->query("SELECT * FROM `cart_books` WHERE cart_id='$cart_id'");
+
+           $cart_details = $cart_details->result();
+
+           $saved_cart = $this->db->query("SELECT `update_date` FROM `saved_cart` WHERE cart_id='$cart_id'");
+
+           $saved_cart = $saved_cart->result();
+
+           $update_date = $saved_cart[0]->update_date;
+
+           if($registered==0){
+           		$customer = $this->db->query("SELECT * FROM `guest_customer` WHERE customer_id='$customer_id'");
+
+           		$customer = $customer->result();
+           }else{
+           		$customer = $this->db->query("SELECT * FROM `registered_customer` WHERE customer_id='$customer_id'");
+
+           		$customer = $customer->result();
+           }
+           $customer = get_object_vars($customer[0]);
+           
+           $books = array();
+		   $stock = array();
+		   $quantity_list = array();
+           foreach ($cart_details as $eachCart) {
+           	
+               $stock_id = $eachCart->stock_id;
+
+               $qty = $eachCart->quantity;
+
+               $stock_details = $this->db->query("SELECT * FROM `shopstock` WHERE stock_id='$stock_id'");
+
+               $stock_details = $stock_details->result();
+
+               $book_id = $stock_details[0]->book_id;
+               $bookstore_id = $stock_details[0]->store;
+               $price = $stock_details[0]->price;
+
+
+               if($bookstore_id==$store_id){
+
+                   $book_details = $this->db->query("SELECT * FROM `books` WHERE book_id='$book_id'");
+
+                   $book_details = $book_details->result();
+
+                   array_push($books, get_object_vars($book_details[0]));
+                   array_push($stock, get_object_vars($stock_details[0]));
+                   array_push($quantity, $qty);
+                   
+
+               }else{
+
+                   //not from this store
+               		continue;
+
+               }
+
+            }
+            array_push($book_all, $books);
+            array_push($stock_all, $stock);
+            array_push($order_date, $update_date);
+	        array_push($order_all, get_object_vars($eachOrder));
+	        array_push($customer_details, $customer);
+	        array_push($quantity_list, $quantity);
+       }
+
+       $all = array($order_all, $customer_details, $book_all, $stock_all, $order_date, $quantity);
+       return $all;
+
+   }
+
 }
 
 ?>

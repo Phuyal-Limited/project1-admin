@@ -1,6 +1,6 @@
 <?php 
     include("header-dash.php");
-?>
+?><pre><?php print_r($details);exit();?></pre>
     <!-- End: HEADER -->
     <!-- Start: MAIN CONTENT -->
     <div class="content content-dash">

@@ -16,7 +16,7 @@
 		<h3>Notification</h3>
 		<ul class="toggle">
 			<li class="icn_add_user"><a href="message">Messages</a></li>
-			<li class="icn_view_users"><a href="#">Lorem Ipsum</a></li>
+			<li class="icn_view_users"><a href="order">Order</a></li>
 			<li class="icn_profile"><a href="#">Lorem Ipsum</a></li>
 		</ul>
 		<h3>lorem</h3>
