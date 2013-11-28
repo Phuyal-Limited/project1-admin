@@ -401,7 +401,7 @@ class Main extends CI_Controller {
 		$data['title'] = 'Order | Nepal Reads';
 		$data['category'] = $this->database->category();
 		$store_id = $this->session->userdata['profile_id'];
-		$data['order'] = $this->database->get_order_list($store_id);//print_r($data['order']);exit();
+		$data['order'] = $this->database->get_order_list($store_id);
 		$this->load->view('order', $data);
 	}
 	

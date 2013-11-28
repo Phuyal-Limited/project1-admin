@@ -1,6 +1,5 @@
-
 <?php 
-    include("header-dash.php");
+    include("header-dash.php");//exit();
 ?>
     <!-- End: HEADER -->
     <!-- Start: MAIN CONTENT -->
@@ -29,6 +28,7 @@
                         </div> -->
                   
                         <?php
+
                         	$size = sizeof($order[0]);
                         	$x=0;
                         	if($size==0){
@@ -42,10 +42,10 @@
                                 <p class="date"><a href=""><?php echo $order[1][$i]['name'];?> </a></p>
                             </div>
                             <div class="span9">
-                                <p>Order No: <span>1</span></p>
-                                <p>Order No: <span>1</span></p>
-                                <p>Order No: <span>1</span></p>
-                                <p>Order No: <span>1</span></p>
+                                <p>Order No: <span><?php echo $order[0][$i]['order_id']?></span></p>
+                                <p>Phone: <span><?php echo $order[1][$i]['phone'];?></span></p>
+                                <p>E-mail: <span><?php echo $order[1][$i]['email'];?></span></p>
+                                <p>Delivery Address: <span><?php echo $order[0][$i]['delivery_address'];?></span></p>
                                 <h5>Books Order </h5>
                                 <div class="row-fluid">
                                 	<div class="span1 kale">
@@ -69,12 +69,13 @@
                                 </div>
 
                                 <?php
-                                	for($j=0;$j<sizeof($order[2][$i];$i++;)){
+                                	$rowsize = $order[2][$i];
+                                	for($j=0;$j<sizeof($order[2][$i]);$j++){
                                 		$total = $order[3][$i][$j]['price'] * $order[5][$x];
                                 ?>
                                 <div class="row-fluid">
                                 	<div class="span1 kale">
-                                		<?php echo $j;?>
+                                		<?php echo $j+1;?>
                                 	</div>
                                 	<div class="span2 kale">
                                 		<?php echo $order[2][$i][$j]['book_name'];?>
