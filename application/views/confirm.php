@@ -17,8 +17,8 @@
                 
                     <div class="row-fluid">
                       <div class="span12">
-                        <div class="confirm-msg">
-                          <p>  A new book <span> <?php echo $details[1]['book_name']?> </span> has been added sucessfully. </p>
+                        <div class="alert alert-success add-success">
+                          A new book <span> <?php echo $details[1]['book_name']?> </span> has been added sucessfully.
                         </div>
                       </div>
                     </div>

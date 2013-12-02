@@ -673,3 +673,12 @@ filter: alpha(opacity=70);
 	width: 94% !important;
 	margin-left: 3% !important;
 }
+
+.add-success{
+	font-size: 15px;
+	text-align: center;
+}
+
+.add-success span{
+	font-weight: bold;
+}

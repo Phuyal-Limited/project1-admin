@@ -22,7 +22,7 @@
                         <div class="module_content">
                             <form action="<?php echo base_url();?>publish" method="post" id="publish" name="publish">
                         <fieldset style="width:48%; float:left; margin-right: 3%;"> 
-                          <label>ISBN 10 *<span style="float:right; margin-right:5px;" id="load_isbn10"></span></label>
+                          <label>ISBN 10 *<div style="color:green;"><i class="fa fa-check"></i></div><span style="float:right; margin-right:5px;" id="load_isbn10"></span></label>
                           <input type="text" name="isbn10" id="isbn10" placeholder="0123456789" style="width:92%;">
                         </fieldset>
                                     <fieldset style="width:48%; float:left;">
