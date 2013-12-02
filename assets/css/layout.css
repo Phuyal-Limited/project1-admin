@@ -11,6 +11,13 @@ background: #F8F8F8;
 font-size: 12px;
 }
 
+@font-face
+{
+font-family: "fontawesome-webfont";
+src: url('../fonts/fontawesome-webfont.ttf');
+}
+
+
 .kale{
 	border: 1px solid;
 }
@@ -672,13 +679,4 @@ filter: alpha(opacity=70);
 .category-add ul{
 	width: 94% !important;
 	margin-left: 3% !important;
-}
-
-.add-success{
-	font-size: 15px;
-	text-align: center;
-}
-
-.add-success span{
-	font-weight: bold;
 }
