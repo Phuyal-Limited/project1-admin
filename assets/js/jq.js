@@ -26,11 +26,12 @@ $("#submit-button").click(function () {
 				$("#load").html('<img src="http://admin.nepalreads.com/assets/images/loading.gif" height="25px" width="25px">');
 			},
 			success: function(response){
-				$("#load").html('');
 				$("#msg").html('');
 				if(response==='successful'){
+					$("#load").html('');
 					window.location.replace("dashboard");
 				}else{
+					$("#load").html('');
 					$("#msg").text(response);
 				}
 		},

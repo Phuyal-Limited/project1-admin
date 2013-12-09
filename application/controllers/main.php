@@ -7,6 +7,11 @@ class Main extends CI_Controller {
 		$data['title'] = 'Login | Nepal Reads';
 		$this->load->view('login', $data);	
 	}
+
+	public function login()
+	{
+		$this->index();	
+	}
 	
 
 	public function add_book()
@@ -27,7 +32,7 @@ class Main extends CI_Controller {
 			$data['details'] = $this->database->confirm_success($store_id, $book_id);
 			$this->load->view('confirm', $data);	
 		}else{
-			redirect('index');
+			redirect('dashboard');
 		}
 		
 	}
@@ -36,7 +41,7 @@ class Main extends CI_Controller {
 		//check for session
 		if(!isset($this->session->userdata['user_id']) && !isset($this->session->userdata['access_right']) && !isset($this->session->userdata['profile_id'])){
 	
-			redirect('index');
+			redirect('login');
 		}else{
 		
 			$data['title'] = 'Dashboard | Nepal Reads';
@@ -107,14 +112,14 @@ class Main extends CI_Controller {
 	public function logout(){
 		$this->session->sess_destroy();
 
-		redirect('index');
+		redirect('login');
 	}
 	
 	public function publish(){
 		//check if data from ajax submitted or not
 		
 		if (!isset($_POST['isbn10'])){
-			redirect('index');
+			redirect('dashboard');
 		}else{
 			
 			$book_id = $this->input->post('book_id');
@@ -305,7 +310,7 @@ class Main extends CI_Controller {
 	
 	public function get_details(){
 		if(!isset($_POST['book_id'])){
-			redirect('index');
+			redirect('dashboard');
 		}else{
 			$book_id = $_POST['book_id'];
 			$stock_id = $_POST['stock_id'];
@@ -317,7 +322,7 @@ class Main extends CI_Controller {
 	
 	public function delete_item(){
 		if(!isset($_POST['book_id'])){
-			redirect('index');
+			redirect('dashboard');
 		}else{
 			$book_id = $_POST['book_id'];
 			$stock_id = $_POST['stock_id'];
@@ -329,7 +334,7 @@ class Main extends CI_Controller {
 	
 	public function update_item(){
 		if(!isset($_POST['book_id'])){
-			redirect('index');
+			redirect('dashboard');
 		}else{
 			
 			$book_id = $_POST['book_id'];
@@ -369,7 +374,7 @@ class Main extends CI_Controller {
 
 	public function quick_search(){
 		if($this->input->post('search')==false){
-			redirect('index');
+			redirect('dashboard');
 		}else{
 			$srch_txt = $this->input->post('srch_txt');
 			
@@ -384,7 +389,7 @@ class Main extends CI_Controller {
 
 	public function search_page(){
 		if(!isset($_POST['srch_txt'])){
-			redirect('index');
+			redirect('dashboard');
 		}else{
 			
 			$srch_txt = $this->input->post('srch_txt');
