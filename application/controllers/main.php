@@ -21,6 +21,14 @@ class Main extends CI_Controller {
 
 		$this->load->view('add-book', $data);	
 	}
+
+	public function change_password()
+	{
+		$data['title'] = 'Change Password| Nepal Reads';
+		$data['category'] = $this->database->category();
+		$this->load->view('change_password', $data);	
+	}
+
 	public function confirm()
 	{
 		if(isset($_GET['stid']) && isset($_GET['bkid'])){
