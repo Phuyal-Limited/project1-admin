@@ -684,3 +684,36 @@ filter: alpha(opacity=70);
 .custom-width{
 	width:95%;
 }
+
+.order-name-date{
+	color: #3c757d;
+	font-size: 13px;
+	font-weight: bold;
+}
+
+.order-content{
+	/*color: #3c757d;*/
+}
+
+.order-content p{
+	font-size: 14px;
+}
+
+.order-head{
+	font-size: 12px;
+	font-weight: bold;
+	text-transform: uppercase;
+	margin-top: 10px;
+}
+
+.order-detail-button span{
+	font-size: 13px;
+	font-weight: bold;
+	text-transform: uppercase;
+	cursor: pointer;
+	/*background-color: #3c757d;*/
+	color: #3c757d;
+}
+.order-detail-button span:hover{
+	color: #000;
+}

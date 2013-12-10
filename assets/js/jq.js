@@ -1,4 +1,7 @@
 $(document).ready(function(){
+
+	
+
 //admin login
 	
 $("#submit-button").click(function () {
@@ -40,6 +43,7 @@ $("#submit-button").click(function () {
 		return false;
   });
 
+//get book details from database if the book with that isbn is in database
 $("#isbn10").keyup(function(){
 	var isbn10 = $("#isbn10").val();
 	var isbn13 = $("#isbn13").val();
@@ -123,6 +127,7 @@ $("#isbn10").keyup(function(){
 	
 });
 
+//get book details from database if the book with that isbn is in database
 $("#isbn13").keyup(function(){
 	var isbn13 = $("#isbn13").val();
 	var isbn10 = $("#isbn10").val();
@@ -301,7 +306,7 @@ $("#reset").click(function(){
 });
 
 
-
+//delete book with ajax
 $("#del_item").click(function(){
 	var book_id = $("#del_book_id").val();
 	var stock_id = $("#del_stock_id").val();
@@ -337,7 +342,7 @@ return false;
 });
 
 
-
+//update book with ajax
 $("#update_details").click(function(){
 	
 	var book_id = $("#updt_book_id").val();
@@ -434,7 +439,7 @@ reader.readAsDataURL(input.files[0]);
 }
 }
 
-
+//function to get details of a book with ajax
 function get_details(i){
 	var book_id = $("#book_id"+i).val();
 	var stock_id = $("#stock_id"+i).val();
@@ -480,6 +485,7 @@ function get_details(i){
 return false; 
 }
 
+//get name of the book to be deleted
 function del_stock(i){
 	var book_id = $("#book_id"+i).val();
 	var stock_id = $("#stock_id"+i).val();
@@ -515,6 +521,7 @@ function del_stock(i){
 	});
 }
 
+//get details of the book to be updated
 function update_stock(i){
 	var book_id = $("#book_id"+i).val();
 	var stock_id = $("#stock_id"+i).val();
@@ -565,6 +572,7 @@ function success_final(page_name){
 	}
 }
 
+//validate form to while book add
 function form_validate(){
 	var isbn10 = $("#isbn10").val();
 	var isbn13 = $("#isbn13").val();
@@ -657,6 +665,7 @@ function form_validate(){
 
 }
 
+//check the length of the isbn (number length)
 function isbncheck(isbn13){
 	var isbn = isbn13.split('-');
 	var size = isbn.length;
@@ -664,6 +673,7 @@ function isbncheck(isbn13){
 	return result.length;
 }
 
+//password change form validation
 function validate_password(){
 	var newpass = $("#new").val();
 	var repass = $("#repass").val();
@@ -686,9 +696,15 @@ function validate_password(){
 	}
 }
 
+//password form reset
 function reset_form(){
 	$("#password-form")[0].reset();
 	$("#validate-msg").html(' ');
 	$("#validate-msg").hide();
 	
+}
+
+//order hide show
+function order_show(i){
+	$("#show-order"+i).toggle(1000);
 }
