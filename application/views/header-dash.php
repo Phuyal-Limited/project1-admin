@@ -2,8 +2,10 @@
 <?php 
 if(!isset($this->session->userdata['user_id']) && !isset($this->session->userdata['access_right']) && !isset($this->session->userdata['profile_id'])){
   
-      redirect('index.php');
+      redirect('login');
     }
+
+    $bread = explode(' | ', $title);
     ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,7 +52,7 @@ if(!isset($this->session->userdata['user_id']) && !isset($this->session->userdat
             </div>
             <div class="span9" >
               <div class="breadcrumbs_container">
-                <article class="breadcrumbs"><a href="#">Nepal Reads</a> <div class="breadcrumb_divider"></div> <a class="current">Dashboard</a></article>
+                <article class="breadcrumbs"><a href="dashboard">Nepal Reads</a> <div class="breadcrumb_divider"></div> <a class="current"><?php echo $bread[0]; ?></a></article>
               </div>
             </div>
         </div>
