@@ -29,7 +29,10 @@
                           </select>
                     <hr  />
                 </div>
+
+               <!--display the book list starts-->
                <div id="display_list"></div>
+
                <div style="clear:both;"></div>
                
                 <!--<div class="pagination pagination-centered">
