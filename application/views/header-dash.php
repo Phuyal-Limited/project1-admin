@@ -2,7 +2,7 @@
 <?php 
 if(!isset($this->session->userdata['user_id']) && !isset($this->session->userdata['access_right']) && !isset($this->session->userdata['profile_id'])){
   
-      // redirect('login');
+      redirect('login');
     }
 
     $bread = explode(' | ', $title);
