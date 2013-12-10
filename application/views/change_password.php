@@ -20,28 +20,32 @@
                     <article class="module custom-width">
                       <header style="text-align:center;"><h3>Change Password</h3></header>
                         <div class="module_content">
-                        <form method="post" id="publish" name="publish">
+                        <form method="post" action="password_change" name="password-form" id="password-form" onsubmit="return validate_password();">
                         <fieldset style="width:75%; display: block; margin-left:auto; margin-right: auto;"> 
                           <label>Old Password<div style="color:green;"><i class="fa fa-check"></i></div><span style="float:right; margin-right:5px;"></span></label>
-                          <input type="text"  placeholder="Old Password" style="width:93%;">
+                          <input type="text" name="old_password" id="old" placeholder="Old Password" style="width:93%;">
                         </fieldset><div class="clear"></div>
                         <fieldset style="width:75%; display: block; margin-left:auto; margin-right: auto;">
                           <label>New Password<span style="float:right; margin-right:5px;" ></span></label>
-                          <input type="text" placeholder="New Password" style="width:93%;">
+                          <input type="text" name="new_password" id="new" placeholder="New Password" style="width:93%;">
                         </fieldset><div class="clear"></div>
                         <fieldset style="width:75%; display: block; margin-left:auto; margin-right: auto;">
-                          <label>Rewrite Password<span style="float:right; margin-right:5px;" ></span></label>
-                          <input type="text"  placeholder="Rewrite Password" style="width:93%;">
+                          <label>Confirm Password<span style="float:right; margin-right:5px;" ></span></label>
+                          <input type="text" name="confirm" id="repass"  placeholder="Confirm Password" style="width:93%;">
                         </fieldset><div class="clear"></div>
-                       </form>
+                       
                         </div>
                       <footer>
-                      <span class="confirm-msg" id="msg" style="display:none; width:43%; margin-top:0; padding-top:0; margin-left:370px; padding:10px;"></span>
+                      
+                        <span class="confirm-msg" id="validate-msg" style="display:none; width:43%; margin-top:0; padding-top:0; margin-left: 110px; font-size: 14px; padding:10px;"></span>
+
+                      
                         <div class="submit_link">
                           <input type="submit"  value="Change" id="change-password" name="change" class="btn btn-default" />
-                          <input type="button" value="Reset" id="reset-password" class="btn btn-default" />
+                          <input type="button" value="Reset" id="reset-password" onclick="reset_form();" class="btn btn-default" />
                         </div>
                       </footer>
+                      </form>
                     </article><!-- end of post new book entry -->
                     
                     <div class="spacer"></div>
