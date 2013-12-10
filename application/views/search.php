@@ -63,9 +63,9 @@
                       
                           <li class="span3">
                             <div class="thumbnail">
-                              <img src="<?php echo $img;?>" alt="<?php echo $alt;?>">
-                              <div class="caption">
-                                <h3><?php echo $result[1][$i]['book_name'];?><!--<small>Pictures from another time</small>--></h3>
+                              <img src="<?php echo $img;?>" alt="<?php echo $alt;?>" style="height:150px; width:150px; ">
+                              <div class="caption" style="height:175px;">
+                                <h3 style="font-size:13px;"><?php echo $result[1][$i]['book_name'];?><!--<small>Pictures from another time</small>--></h3>
                                 <p>By: <a href=""><?php echo $result[1][$i]['author'];?></a> <br /></p>
                                 <p>Fourth Edition</p>
                                 <!--<span class="rating">
