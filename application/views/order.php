@@ -41,29 +41,29 @@
                             <div class="span2">
                                 <p class="date"><a href=""><?php echo $order[1][$i]['name'];?> </a></p>
                             </div>
-                            <div class="span9">
+                            <div class="span8">
                                 <p>Order No: <span><?php echo $order[0][$i]['order_id']?></span></p>
                                 <p>Phone: <span><?php echo $order[1][$i]['phone'];?></span></p>
                                 <p>E-mail: <span><?php echo $order[1][$i]['email'];?></span></p>
                                 <p>Delivery Address: <span><?php echo $order[0][$i]['delivery_address'];?></span></p>
                                 <h5>Books Order </h5>
                                 <div class="row-fluid">
-                                	<div class="span1 kale">
+                                	<div class="span1 ">
                                 		S.N.
                                 	</div>
-                                	<div class="span2 kale">
+                                	<div class="span4 ">
                                 		Name
                                 	</div>
-                                	<div class="span2 kale">
+                                	<div class="span2 ">
                                 		ISBN
                                 	</div>
-                                	<div class="span1 kale">
+                                	<div class="span1 ">
                                 		Qty
                                 	</div>
-                                	<div class="span2 kale">
+                                	<div class="span2 ">
                                 		Price
                                 	</div>
-                                	<div class="span2 kale">
+                                	<div class="span2 ">
                                 		Total
                                 	</div>
                                 </div>
@@ -74,22 +74,22 @@
                                 		$total = $order[3][$i][$j]['price'] * $order[5][$x];
                                 ?>
                                 <div class="row-fluid">
-                                	<div class="span1 kale">
+                                	<div class="span1 ">
                                 		<?php echo $j+1;?>
                                 	</div>
-                                	<div class="span2 kale">
+                                	<div class="span4 ">
                                 		<?php echo $order[2][$i][$j]['book_name'];?>
                                 	</div>
-                                	<div class="span2 kale">
+                                	<div class="span2 ">
                                 		<?php echo $order[2][$i][$j]['isbn10'];?>
                                 	</div>
-                                	<div class="span1 kale">
+                                	<div class="span1 ">
                                 		<?php echo $order[5][$x];?>
                                 	</div>
-                                	<div class="span2 kale">
+                                	<div class="span2 ">
                                 		<?php echo $order[3][$i][$j]['price'];?>
                                 	</div>
-                                	<div class="span2 kale">
+                                	<div class="span2 ">
                                 		<?php echo $total;?>
                                 	</div>
                                 </div>
@@ -99,7 +99,7 @@
                                 ?>
 
                             </div>
-                            <div class="span1">
+                            <div class="span2">
                               <p><?php echo $order[4][$i];?></p>
                             </div>
                           </div>
