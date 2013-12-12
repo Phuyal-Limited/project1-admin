@@ -248,7 +248,7 @@ $("#submit").click(function(event) {
         	var response = data.split('/');
         	
 			if(response[0]=='Book Successfully Added.'){
-				window.location.replace("confirm?stid="+response[1]+" && bkid="+response[2]);
+				window.location.replace("confirm/"+response[1]+"/"+response[2]);
 				
 				
 			}
@@ -273,11 +273,11 @@ $("#submit").click(function(event) {
 			}
 			if(response[0] == 'File Size Larger'){
 				$("#msg").show();	
-        		$("#msg").html('File Size Larger.');
+        		$("#msg").html('File Size Larger. (Allowed less than 2MB)');
 			}
 			if(response[0] == 'Invalid File Type'){
 				$("#msg").show();	
-        		$("#msg").html('Invalid File Type.');
+        		$("#msg").html('Invalid File Type. (Allowed types jpg, jpeg, png)');
 			}
 		
 		/*	else
@@ -468,6 +468,7 @@ function get_details(i){
 			'<p>ISBN10: '+data[0].isbn10+'</p>' +
 			'<p>ISBN13: '+data[0].isbn13+'</p>' +
 			'<p>Author: '+data[0].author+'</p>' +
+			'<p>Edition: '+data[0].edition+'</p>' +
 			'<p>Price: '+data[1].price+'</p>' +
 			'<p>Category: '+data[3]+'</p>' +
 			'<p>Publisher: '+data[0].publisher+'</p>' +
@@ -577,7 +578,7 @@ function form_validate(){
 	var isbn10 = $("#isbn10").val();
 	var isbn13 = $("#isbn13").val();
 	var category_id = $("#all_category").val();
-	
+	var edition = $("#edition").val();
 	var book_name = $("#book_name").val();
 	var author = $("#author").val();
 	var publisher = $("#publisher").val();
@@ -617,6 +618,11 @@ function form_validate(){
 	if(published_date == 'Please Choose..'){
 		$("#msg").show();	
         $("#msg").html('Year of Publication Not Selected.');
+		return false;
+	}
+	if(edition == ''){
+		$("#msg").show();	
+        $("#msg").html('Edition Field Empty.');
 		return false;
 	}
 	if(language == ''){

@@ -8,6 +8,11 @@ class Database extends CI_Model{
 		return $output->result();
 	}
 	
+	public function change_password($id,$credentials){
+		$this->db->where('user_id',$id);
+		$this->db->update('user',$credentials);
+	}
+
 	public function category(){
 		$output = $this->db->query("SELECT * FROM `category`");
 		$output = $output->result();

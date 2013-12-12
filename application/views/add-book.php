@@ -42,7 +42,7 @@
                           <input type="text" name="publisher" id="publisher" style="width:92%;">
                         </fieldset>
                         <fieldset style="width:48%; float:left; margin-right: 3%;">
-                          <label>Year Of Publication *</label>
+                          <label>Year Of Publication (A.D) * </label>
                           <select name="published_date" id="published_date" style="width:92%">
                             <option value="Please Choose..">Please Choose..</option>
                             <?php 
@@ -55,20 +55,24 @@
                           </select>
                         </fieldset>
                         <fieldset style="width:48%; float:left;">
+                          <label>Edition *</label>
+                          <input type="text" name="edition" id="edition" style="width:92%;">
+                        </fieldset>
+                        <div class="clear"></div>
+                        <fieldset style="width:48%; float:left; margin-right: 3%;">
                           <label>Language *</label>
                           <input type="text" name="language" id="language" style="width:92%;">
                         </fieldset>
-                        <fieldset style="width:48%; float:left; margin-right: 3%;"> 
+                        <fieldset style="width:48%; float:left;"> 
                           <label>Price *</label>
                           <input type="text" name="price" id="price" style="width:92%;">
                         </fieldset>
-                        <fieldset style="width:48%; float:left;"> 
+                        <div class="clear"></div>
+                        <fieldset style="width:48%; float:left; margin-right: 3%;"> 
                           <label>Weight</label>
                           <input type="text" name="weight" id="weight" style="width:92%;">
-                        </fieldset><div class="clear"></div>
-                                    
-                                    
-                        <fieldset style="width:48%; float:left; margin-right: 3%;"> 
+                        </fieldset>      
+                        <fieldset style="width:48%; float:left;"> 
                           <label>Category *</label>
                           <div class="category-add">
                             <select name="category_id" id="category_id" style="width:92% !important;" class="multiselect" multiple="multiple">
@@ -82,19 +86,20 @@
                           </select>
                           </div>
                         </fieldset>
-                        <fieldset style="width:48%; float:left;"> 
+                        <div class="clear"></div>
+                        <fieldset style="width:48%; float:left; margin-right: 3%;"> 
                           <label>Delivery Cost Within City</label>
                           <input type="text" name="delivery_cost_within_city" id="delivery_cost_within_city" style="width:92%;">
-                        </fieldset><div class="clear"></div>
-                                    
-                                    <fieldset style="width:48%; float:left;"> 
+                        </fieldset>
+                        <fieldset style="width:48%; float:left;"> 
                           <label>Delivery Cost Out Of City</label>
                           <input type="text" name="delivery_cost_outof_city" id="delivery_cost_outof_city" style="width:92%;">
                         </fieldset>
-                                    <fieldset style="width:48%; float:right;"> 
+                        <div class="clear"></div>
+                        <fieldset style="width:48%; float:right;"> 
                           <label>Store Item Reference</label>
                           <input type="text" name="store_ref" id="store_ref" style="width:92%;">
-                        </fieldset><div class="clear"></div>
+                        </fieldset>
                         <fieldset style="width:48%; float:left;"> 
                           <label>Image</label>&nbsp;
                           <input type="file" name="image" id="image"  onChange="readURL(this);" style="width:92%;">

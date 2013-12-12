@@ -20,18 +20,29 @@
                     <article class="module custom-width">
                       <header style="text-align:center;"><h3>Change Password</h3></header>
                         <div class="module_content">
-                        <form method="post" action="password_change" name="password-form" id="password-form" onsubmit="return validate_password();">
+                        <?php
+                          if(isset($success)){
+                            echo "<div class='message-show'>";
+                            if($success){
+                              echo "<div class='success'>$message</div>";
+                            }else{
+                              echo "<div class='failure'>$message</div>";
+                            }
+                            echo "</div>";
+                          }
+                        ?>
+                        <form method="post" action="" name="password-form" id="password-form" onsubmit="return validate_password();">
                         <fieldset style="width:75%; display: block; margin-left:auto; margin-right: auto;"> 
                           <label>Old Password<div style="color:green;"><i class="fa fa-check"></i></div><span style="float:right; margin-right:5px;"></span></label>
-                          <input type="text" name="old_password" id="old" placeholder="Old Password" style="width:93%;">
+                          <input type="password" name="old_password" id="old" placeholder="Old Password" style="width:93%;">
                         </fieldset><div class="clear"></div>
                         <fieldset style="width:75%; display: block; margin-left:auto; margin-right: auto;">
                           <label>New Password<span style="float:right; margin-right:5px;" ></span></label>
-                          <input type="text" name="new_password" id="new" placeholder="New Password" style="width:93%;">
+                          <input type="password" name="new_password" id="new" placeholder="New Password" style="width:93%;">
                         </fieldset><div class="clear"></div>
                         <fieldset style="width:75%; display: block; margin-left:auto; margin-right: auto;">
                           <label>Confirm Password<span style="float:right; margin-right:5px;" ></span></label>
-                          <input type="text" name="confirm" id="repass"  placeholder="Confirm Password" style="width:93%;">
+                          <input type="password" name="confirm" id="repass"  placeholder="Confirm Password" style="width:93%;">
                         </fieldset><div class="clear"></div>
                        
                         </div>

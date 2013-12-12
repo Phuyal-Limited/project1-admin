@@ -60,9 +60,9 @@ function book_table(){
 	                        '<div class="caption" style="height:175px;">'+
 	                              '<h3 style="font-size:13px;">'+response[1][y].book_name+'</h3>'+
 	                              '<p>By:<a href="">'+response[1][y].author+'</a> <br /></p>'+
-	                              '<p>Fourth Edition</p>'+
-	                              '<p>rating ****</p>'+
-	                              '<p><a href="">Reviews</a>(123)</p>'+
+	                              '<p>'+response[1][y].edition+' Edition</p>'+
+	                              //'<p>rating ****</p>'+
+	                              //'<p><a href="">Reviews</a>(123)</p>'+
 	                              '<p class="price">Price: '+response[0][y].price+'</p>'+
 	                            '</div>'+
 	                        '<div class="widget-footer">'+
@@ -156,9 +156,9 @@ function search_page(srch_txt){
 	                        '<div class="caption" style="height:175px;">'+
 	                              '<h3 style="font-size:13px;">'+response[1][y].book_name+' </h3>'+
 	                              '<p>By:<a href="">'+response[1][y].author+'</a> <br /></p>'+
-	                              '<p>Fourth Edition</p>'+
-	                              '<p>rating ****</p>'+
-	                              '<p><a href="">Reviews</a>(123)</p>'+
+	                              '<p>'+response[1][y].edition+' Edition</p>'+
+	                              //'<p>rating ****</p>'+
+	                              //'<p><a href="">Reviews</a>(123)</p>'+
 	                              '<p class="price">Price: '+response[0][y].price+'</p>'+
 	                            '</div>'+
 	                        '<div class="widget-footer">'+

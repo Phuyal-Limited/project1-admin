@@ -24,17 +24,46 @@ class Main extends CI_Controller {
 
 	public function change_password()
 	{
-		$data['title'] = 'Change Password| Nepal Reads';
+		//Check if the form has been submitted.
+		if($this->input->post('change')){
+			//First check if the current password is correct
+			$login_details=array(
+				'user' => $this->session->userdata['username'],
+				'pass' => sha1($this->input->post('old_password'))
+			);
+
+			$result=$this->database->login($login_details);
+			if($result == array()){
+				$data['success']=0;
+				$data['message']="Invalid Password. Please enter correct password.";
+			}
+			else
+			{
+				//Here old password entered is correct now
+				$new=$this->input->post("new_password");
+				$new=sha1($new);
+				$id= $result[0]->user_id;
+				$credentials=array(
+					'password' => $new
+				);
+				$this->database->change_password($id,$credentials);
+				$data["success"] = 1;
+				$data['message']="Password Changed successfully.";
+			}
+		}
+
+		$data['title'] = 'Change Password | Nepal Reads';
 		$data['category'] = $this->database->category();
 		$this->load->view('change_password', $data);	
 	}
 
 	public function confirm()
 	{
-		if(isset($_GET['stid']) && isset($_GET['bkid'])){
-			$store_id = $_GET['stid'];
-			$book_id = $_GET['bkid'];
-			
+		$stid = intval($this->uri->segment(2));
+		$bkid = intval($this->uri->segment(3));
+		if(!empty($stid) && !empty($bkid) && is_int($stid) && is_int($bkid)){
+			$store_id = $stid;
+			$book_id = $bkid;
 			$data['title'] = 'Confirm | Nepal Reads';
 			$data['category'] = $this->database->category();
 			$data['details'] = $this->database->confirm_success($store_id, $book_id);
@@ -106,7 +135,8 @@ class Main extends CI_Controller {
 				$sess_data = array(
 					'user_id' => $output[0]->user_id,
 					'access_right' => $output[0]->access_right,
-					'profile_id' => $output[0]->profile_id
+					'profile_id' => $output[0]->profile_id,
+					'username' => $_POST['name']
 				);
 				
 				$this->session->set_userdata($sess_data);
@@ -241,7 +271,8 @@ class Main extends CI_Controller {
 						'image_id' => $img_id,
 						'language' => $this->input->post('language'),
 						'weight' => $wt,
-						'published_date' => $this->input->post('published_date'),		
+						'published_date' => $this->input->post('published_date'),
+						'edition' => $this->input->post('edition')		
 					);
 					$store_ref = $this->input->post('store_ref');
 					if($store_ref == ''){
