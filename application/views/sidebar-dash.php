@@ -7,7 +7,7 @@
         <h3><a href="dashboard">Dashboard</a></h3>
 		<h3>Publish A Book</h3>
 		<ul class="toggle">
-			<li class="icn_new_article"><a href="add_book">Add</a></li>
+			<li class="icn_new_article"><a href="add_book">Add Books</a></li>
 			<li class="icn_tags"><a href="all_books" id="all_books">My Books</a></li>			
 		</ul>
 		<h3>Notification</h3>

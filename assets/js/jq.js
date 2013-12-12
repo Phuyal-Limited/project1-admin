@@ -95,6 +95,7 @@ $("#isbn10").keyup(function(){
 					$("#publisher").val(response[0].publisher);
 					$("#published_date").val(response[0].published_date);
 					$("#language").val(response[0].language);
+					$("#edition").val(response[0].edition);
 					
 					$("#weight").val(response[0].weight);
 					$("#all_category").val(response[0].category_id);
@@ -178,6 +179,7 @@ $("#isbn13").keyup(function(){
 					$("#publisher").val(response[0].publisher);
 					$("#published_date").val(response[0].published_date);
 					$("#language").val(response[0].language);
+					$("#edition").val(response[0].edition);
 					
 					$("#weight").val(response[0].weight);
 					$("#all_category").val(response[0].category_id);

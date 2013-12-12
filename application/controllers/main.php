@@ -17,7 +17,8 @@ class Main extends CI_Controller {
 	public function add_book()
 	{
 		$data['title'] = 'Add Book | Nepal Reads';
-		$data['category'] = $this->database->category();
+		$store_id = $this->session->userdata['profile_id'];
+		$data['category'] = $this->database->category($store_id);
 
 		$this->load->view('add-book', $data);	
 	}
@@ -53,7 +54,8 @@ class Main extends CI_Controller {
 		}
 
 		$data['title'] = 'Change Password | Nepal Reads';
-		$data['category'] = $this->database->category();
+		$store_id = $this->session->userdata['profile_id'];
+		$data['category'] = $this->database->category($store_id);
 		$this->load->view('change_password', $data);	
 	}
 
@@ -65,7 +67,7 @@ class Main extends CI_Controller {
 			$store_id = $stid;
 			$book_id = $bkid;
 			$data['title'] = 'Confirm | Nepal Reads';
-			$data['category'] = $this->database->category();
+			$data['category'] = $this->database->category($store_id);
 			$data['details'] = $this->database->confirm_success($store_id, $book_id);
 			$this->load->view('confirm', $data);	
 		}else{
@@ -82,7 +84,8 @@ class Main extends CI_Controller {
 		}else{
 		
 			$data['title'] = 'Dashboard | Nepal Reads';
-			$data['category'] = $this->database->category();
+			$store_id = $this->session->userdata['profile_id'];
+			$data['category'] = $this->database->category($store_id);
 			$this->load->view('dashboard', $data);
 		}
 	}
@@ -206,7 +209,7 @@ class Main extends CI_Controller {
 						$type = $_FILES['image']['type'];
 						
 						//check image
-						if($ext_name == 'jpg' OR $ext_name == 'jpeg' OR $ext_name == 'png'){
+						if($ext_name == 'jpg' OR $ext_name == 'jpeg' OR $ext_name == 'png' OR $ext_name == 'PNG' OR $ext_name == 'JPG' OR $ext_name == 'JPEG'){
 							//test
 
 						}else{
@@ -339,8 +342,8 @@ class Main extends CI_Controller {
 		
 		//print_r($_POST['book']);exit();
 		$data['title'] = 'My Books | Nepal Reads';
-		
-		$data['category'] = $this->database->category();
+		$store_id = $this->session->userdata['profile_id'];
+		$data['category'] = $this->database->category($store_id);
 		$this->load->view('all-books', $data);
 		$this->load->view('footer-dash');
 	}
@@ -407,7 +410,8 @@ class Main extends CI_Controller {
 	public function message()
 	{
 		$data['title'] = 'Message | Nepal Reads';
-		$data['category'] = $this->database->category();
+		$store_id = $this->session->userdata['profile_id'];
+		$data['category'] = $this->database->category($store_id);
 		$this->load->view('messages', $data);	
 	}
 
@@ -418,7 +422,7 @@ class Main extends CI_Controller {
 			$srch_txt = $this->input->post('srch_txt');
 			
 			$store_id = $this->session->userdata['profile_id'];
-			$data['category'] = $this->database->category();
+			$data['category'] = $this->database->category($store_id);
 			$data['result'] = $this->database->quick_search($srch_txt, $store_id);
 			$data['title'] = 'Search Result | Nepal Reads';
 			$data['srch_txt'] = $srch_txt;
@@ -443,7 +447,8 @@ class Main extends CI_Controller {
 
 	public function order(){
 		$data['title'] = 'Order | Nepal Reads';
-		$data['category'] = $this->database->category();
+		$store_id = $this->session->userdata['profile_id'];
+		$data['category'] = $this->database->category($store_id);
 		$store_id = $this->session->userdata['profile_id'];
 		$data['order'] = $this->database->get_order_list($store_id);
 		$this->load->view('order', $data);

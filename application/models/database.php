@@ -13,10 +13,10 @@ class Database extends CI_Model{
 		$this->db->update('user',$credentials);
 	}
 
-	public function category(){
+	public function category($shop_id){
 		$output = $this->db->query("SELECT * FROM `category`");
 		$output = $output->result();
-		$store = $this->db->query("SELECT * FROM `bookshop`");
+		$store = $this->db->query("SELECT * FROM `bookshop` WHERE `shop_id`='$shop_id'");
 		$store = $store->result();
 		$all = array($output, $store);
 		return $all;	

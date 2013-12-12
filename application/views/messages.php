@@ -79,7 +79,7 @@
                         <div class="message">
                           <div class="row-fluid">
                             <div class="span2">
-                                <p class="date"><a href="">Bibek Kc </a></p>
+                                <p class="date"><a href="">Bidur Subedi </a></p>
                             </div>
                             <div class="span9">
                                 <div class="accordion" id="accordion2">
@@ -115,7 +115,7 @@
                         <div class="message">
                           <div class="row-fluid">
                             <div class="span2">
-                                <p class="date"><a href="">Bibek Kc </a></p>
+                                <p class="date"><a href="">Sudip Dawadi </a></p>
                             </div>
                             <div class="span9">
                                 <div class="accordion" id="accordion2">
@@ -151,7 +151,7 @@
                         <div class="message">
                           <div class="row-fluid">
                             <div class="span2">
-                                <p class="date"><a href="">Bibek Kc </a></p>
+                                <p class="date"><a href="">Niranjan Udas </a></p>
                             </div>
                             <div class="span9">
                                 <div class="accordion" id="accordion2">
@@ -187,7 +187,7 @@
                         <div class="message">
                           <div class="row-fluid">
                             <div class="span2">
-                                <p class="date"><a href="">Bibek Kc </a></p>
+                                <p class="date"><a href="">Saroj Gurung </a></p>
                             </div>
                             <div class="span9">
                                 <div class="accordion" id="accordion2">
@@ -223,7 +223,7 @@
                         <div class="message">
                           <div class="row-fluid">
                             <div class="span2">
-                                <p class="date"><a href="">Bibek Kc </a></p>
+                                <p class="date"><a href="">Mahesh Thapa </a></p>
                             </div>
                             <div class="span9">
                                 <div class="accordion" id="accordion2">
