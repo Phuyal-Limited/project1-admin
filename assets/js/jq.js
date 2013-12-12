@@ -684,18 +684,21 @@ function validate_password(){
 	var newpass = $("#new").val();
 	var repass = $("#repass").val();
 	if(newpass.length<5){
+		$("#success-msg").hide();
 		$("#validate-msg").html('Password must be of minimum length 5 (New Password)');
 		$("#validate-msg").show();
 		return false;
 	}
 
 	if(repass.length<5){
+		$("#success-msg").hide();
 		$("#validate-msg").html('Password must be of minimum length 5 (Confirm Password)');
 		$("#validate-msg").show();
 		return false;
 	}
 
 	if(newpass!=repass){
+		$("#success-msg").hide();
 		$("#validate-msg").html('Password Not Match');
 		$("#validate-msg").show();
 		return false;

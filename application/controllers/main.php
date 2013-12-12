@@ -35,7 +35,7 @@ class Main extends CI_Controller {
 			$result=$this->database->login($login_details);
 			if($result == array()){
 				$data['success']=0;
-				$data['message']="Invalid Password. Please enter correct password.";
+				$data['message']="<strong>Invalid Password!</strong> Please enter correct password.";
 			}
 			else
 			{

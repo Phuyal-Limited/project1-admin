@@ -22,27 +22,28 @@
                         <div class="module_content">
                         <?php
                           if(isset($success)){
-                            echo "<div class='message-show'>";
+                            echo "<div id='success-msg' class='message-show'>";
                             if($success){
-                              echo "<div class='success'>$message</div>";
+                              echo "<div class='alert alert-success'>$message</div>";
                             }else{
-                              echo "<div class='failure'>$message</div>";
+                              echo "<div class='alert alert-danger'>$message</div>";
                             }
                             echo "</div>";
                           }
                         ?>
+                        <div class="alert alert-danger" id="validate-msg" style="display:none;"></div>
                         <form method="post" action="" name="password-form" id="password-form" onsubmit="return validate_password();">
                         <fieldset style="width:75%; display: block; margin-left:auto; margin-right: auto;"> 
                           <label>Old Password<div style="color:green;"><i class="fa fa-check"></i></div><span style="float:right; margin-right:5px;"></span></label>
-                          <input type="password" name="old_password" id="old" placeholder="Old Password" style="width:93%;">
+                          <input type="password" name="old_password" id="old" placeholder="Old Password" style="width:93%; margin-left: 13px;">
                         </fieldset><div class="clear"></div>
                         <fieldset style="width:75%; display: block; margin-left:auto; margin-right: auto;">
                           <label>New Password<span style="float:right; margin-right:5px;" ></span></label>
-                          <input type="password" name="new_password" id="new" placeholder="New Password" style="width:93%;">
+                          <input type="password" name="new_password" id="new" placeholder="New Password" style="width:93%; margin-left: 13px;">
                         </fieldset><div class="clear"></div>
                         <fieldset style="width:75%; display: block; margin-left:auto; margin-right: auto;">
                           <label>Confirm Password<span style="float:right; margin-right:5px;" ></span></label>
-                          <input type="password" name="confirm" id="repass"  placeholder="Confirm Password" style="width:93%;">
+                          <input type="password" name="confirm" id="repass"  placeholder="Confirm Password" style="width:93%; margin-left: 13px;">
                         </fieldset><div class="clear"></div>
                        
                         </div>
