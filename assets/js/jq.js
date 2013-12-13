@@ -417,7 +417,7 @@ return false;
 
 //clicked add new book button
 	$("#add_new_book").click(function(){
-		window.location.replace('add_book');
+		window.location.replace('http://admin.nepalreads.com/add_book');
 	});
 
 });

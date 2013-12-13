@@ -56,7 +56,7 @@
                         </fieldset>
                         <fieldset style="width:48%; float:left;">
                           <label>Edition *</label>
-                          <input type="text" name="edition" id="edition" style="width:89%;">
+                          <input type="text" name="edition" placeholder="ex: 1st, 2nd..." id="edition" style="width:89%;">
                         </fieldset>
                         <div class="clear"></div>
                         <fieldset style="width:48%; float:left; margin-right: 3%;">

@@ -33,10 +33,10 @@ if(!isset($this->session->userdata['user_id']) && !isset($this->session->userdat
       <div class="container">
         <div class="row-fluid" >
             <div class="span3 dash-head" >
-              <h3><a href="dashboard">Dashboard</a></h3>
+              <h3><a href="<?php echo base_url(); ?>dashboard">Dashboard</a></h3>
             </div>
             <div class="span7 logo" >
-              <a href="dashboard"><img src="<?php echo base_url('assets/images/logo.png');?>"></a>
+              <a href="<?php echo base_url(); ?>dashboard"><img src="<?php echo base_url('assets/images/logo.png');?>"></a>
             </div>
             
         </div>
@@ -52,7 +52,7 @@ if(!isset($this->session->userdata['user_id']) && !isset($this->session->userdat
             </div>
             <div class="span9" >
               <div class="breadcrumbs_container">
-                <article class="breadcrumbs"><a href="dashboard">Nepal Reads</a> <div class="breadcrumb_divider"></div> <a class="current"><?php echo $bread[0]; ?></a></article>
+                <article class="breadcrumbs"><a href="<?php echo base_url(); ?>dashboard">Nepal Reads</a> <div class="breadcrumb_divider"></div> <a class="current"><?php echo $bread[0]; ?></a></article>
               </div>
             </div>
         </div>
