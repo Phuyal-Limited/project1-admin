@@ -126,7 +126,7 @@
                         <h4>Messages</h4>
                         <hr class="footer-divider" />
                         <div class="message">
-                            <p class="date"><small><a href="">Bibek Kc </a><span class="bold">18th may 2013</span> </small></p>
+                            <p class="date"><small><a href="">Sudip Dawadi </a><span class="bold">18th may 2013</span> </small></p>
                             <div class="accordion" id="accordion2">
                                   <div class="accordion-group">
                                     <div class="accordion-heading">
@@ -153,7 +153,7 @@
                                 </div>
                         </div>
                         <div class="message">
-                            <p class="date"><small><a href="">Bibek Kc </a><span class="bold">18th may 2013</span> </small></p>
+                            <p class="date"><small><a href="">Sudip Dawadi </a><span class="bold">18th may 2013</span> </small></p>
                             <div class="accordion" id="accordion2">
                                   <div class="accordion-group">
                                     <div class="accordion-heading">
@@ -180,7 +180,7 @@
                                 </div>
                         </div>
                         <div class="message">
-                            <p class="date"><small><a href="">Bibek Kc </a><span class="bold">18th may 2013</span> </small></p>
+                            <p class="date"><small><a href="">Sudip Dawadi </a><span class="bold">18th may 2013</span> </small></p>
                             <div class="accordion" id="accordion2">
                                   <div class="accordion-group">
                                     <div class="accordion-heading">

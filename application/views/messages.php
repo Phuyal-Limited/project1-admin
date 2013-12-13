@@ -43,7 +43,7 @@
                         <div class="message">
                           <div class="row-fluid">
                             <div class="span2">
-                                <p class="date"><a href="">Bibek Kc </a></p>
+                                <p class="date"><a href="">Sudip Dawadi </a></p>
                             </div>
                             <div class="span9">
                                 <div class="accordion" id="accordion2">
